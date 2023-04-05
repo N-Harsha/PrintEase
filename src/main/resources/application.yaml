@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/print-ease
+    username: admin
+    password: Admin@123
+
+printEase:
+  app:
+    jwtSecret: printEaseSecretKey
+    jwtExpirationSeconds: 1296000
+    refreshExpiryDays: 30
+
