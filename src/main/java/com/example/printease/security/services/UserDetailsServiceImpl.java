@@ -1,6 +1,5 @@
 package com.example.printease.security.services;
 
-import com.example.printease.modal.User;
 import com.example.printease.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

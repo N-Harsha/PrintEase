@@ -1,12 +1,10 @@
-package com.example.printease.modal;
+package com.example.printease.modals;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -15,18 +13,18 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-//@Builder
+@SuperBuilder
 public class ServiceProvider extends User {
 
-    @NotBlank
+    @NotBlank(message = "Business name is required")
     @Size(max = 100)
     @Column(nullable = false, length = 100)
     private String businessName;
 
-    @NotBlank
+    @NotBlank(message = "gstIn is required")
     @Size(max = 15,min = 15)
     @Column(nullable = false, length = 15)
-    private String GSTIN;
+    private String gstIn;
 
     @OneToMany(mappedBy = "serviceProvider")
     private List<AssociatedService> associatedServices;
@@ -34,6 +32,8 @@ public class ServiceProvider extends User {
     @OneToMany(mappedBy = "serviceProvider")
     private List<Rating> ratings;
 
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 }

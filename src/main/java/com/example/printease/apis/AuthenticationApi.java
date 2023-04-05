@@ -1,8 +1,8 @@
-package com.example.printease.api;
+package com.example.printease.apis;
 
-import com.example.printease.modal.DTO.AuthenticationRequestDTO;
-import com.example.printease.modal.DTO.RegistrationRequestDTO;
-import com.example.printease.service.AuthenticationService;
+import com.example.printease.modals.DTO.AuthenticationRequestDTO;
+import com.example.printease.modals.DTO.RegistrationRequestDTO;
+import com.example.printease.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

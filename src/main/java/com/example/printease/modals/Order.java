@@ -1,4 +1,4 @@
-package com.example.printease.modal;
+package com.example.printease.modals;
 
 import jakarta.persistence.*;
 

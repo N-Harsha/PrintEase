@@ -1,10 +1,13 @@
-package com.example.printease.modal;
+package com.example.printease.modals;
 
+import com.example.printease.enums.UserRoles;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
@@ -13,20 +16,20 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Name cannot be blank")
     @Size(max = 100)
     @Column(nullable = false, length = 100)
+    @Pattern(regexp = "^[a-zA-Z ]*$", message = "Name should contain only alphabets and spaces")
     private String name;
 
-    @NotBlank
-    @Email
+    @Email(message = "Email should be valid")
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -36,16 +39,17 @@ public class User {
 //    @Column(nullable = false, length = 50)
 //    private String userName;
 
-    @NotBlank
+    @NotBlank(message = "Password cannot be blank")
     @Column(nullable = false)
     private String password;
 
 //    @ManyToOne
 //    private UserRole userRole; todo later update the string user role to a list of user roles and migrate the user roles to a separate table.
-    private String userRole;
+    @Enumerated(EnumType.STRING)
+    private UserRoles userRole;
 
-    @Size(max = 20)
-    @Column(length = 20)
+    @Size(min = 10,max = 10, message = "Phone number should be of 10 digits")
+    @Column(length = 10)
     private String phoneNumber;
 
 //  private String alternatePhoneNumber; todo add alternate phone number feature in the future.

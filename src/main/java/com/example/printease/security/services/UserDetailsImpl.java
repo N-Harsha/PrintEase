@@ -1,7 +1,6 @@
 package com.example.printease.security.services;
 
-import com.example.printease.modal.ServiceProvider;
-import com.example.printease.modal.User;
+import com.example.printease.modals.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,7 +32,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getId(),
                 user.getEmail(),
                 user.getPassword(),
-                List.of(new SimpleGrantedAuthority(user.getUserRole())));
+                List.of(new SimpleGrantedAuthority(user.getUserRole().name())));
     }
 
 

@@ -1,24 +1,27 @@
-package com.example.printease.modal;
+package com.example.printease.modals;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Rating {
+public class AssociatedService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long rating;
-    private String comment;
     @OneToOne
     private Service service;
-    @ManyToOne
-    private ServiceProvider serviceProvider;
-    @OneToOne
-    private Customer customer;
 
+    @OneToMany(mappedBy = "associatedService")
+    private List<Offer> offerList;
+
+    @ManyToOne
+    @JoinColumn(name = "service_provider_id",nullable = false)
+    private ServiceProvider serviceProvider;
 }

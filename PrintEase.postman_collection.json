@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "a52232d5-40a1-4a5b-8492-0ab57903a33c",
+		"name": "PrintEase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Service Provider Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe1@example.com\",\r\n  \"password\": \"password\",\r\n  \"userRole\": \"ROLE_SERVICE_PROVIDER\",\r\n  \"phoneNumber\": \"1234567890\",\r\n  \"businessName\": \"Example Business\",\r\n  \"gstIn\": \"ABC123456789012\",\r\n  \"address\": {\r\n    \"addressLine1\": \"123 Main St\",\r\n    \"addressLine2\": \"Apt 456\",\r\n    \"city\": \"Anytown\",\r\n    \"pincode\": 12345,\r\n    \"latitude\": 40.7128,\r\n    \"longitude\": -74.0060,\r\n    \"state\": null\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe2@example.com\",\r\n  \"password\": \"password\",\r\n  \"userRole\": \"ROLE_CUSTOMER\",\r\n  \"phoneNumber\": \"1234567890\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

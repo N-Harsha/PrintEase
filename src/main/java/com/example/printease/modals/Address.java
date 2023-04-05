@@ -1,4 +1,4 @@
-package com.example.printease.modal;
+package com.example.printease.modals;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -31,11 +31,14 @@ public class Address {
     @Column(nullable = false)
     @NotNull
     @Digits(integer = 5, fraction = 0)
-    private Integer zipCode;
+    private Integer pincode;
 
     private Float latitude;
     private Float longitude;
 
     @ManyToOne
-    State state;
+    private State state;
+
+    @OneToOne(mappedBy = "address")
+    private ServiceProvider serviceProvider;
 }

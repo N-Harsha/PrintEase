@@ -1,4 +1,4 @@
-package com.example.printease.modal.DTO;
+package com.example.printease.modals.DTO;
 
 import lombok.*;
 

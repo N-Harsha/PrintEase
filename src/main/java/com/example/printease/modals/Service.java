@@ -1,8 +1,6 @@
-package com.example.printease.modal;
+package com.example.printease.modals;
 
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 public class Service {

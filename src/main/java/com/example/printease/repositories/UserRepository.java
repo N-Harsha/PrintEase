@@ -1,9 +1,8 @@
 package com.example.printease.repositories;
 
-import com.example.printease.modal.User;
+import com.example.printease.modals.User;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User,Long> {
