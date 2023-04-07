@@ -24,6 +24,7 @@ public class JwtService {
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication){
+        logger.info("Generating JWT token");
         UserDetails userPrinciple = (UserDetails) authentication.getPrincipal();
 
         LocalDateTime localNow = LocalDateTime.now();

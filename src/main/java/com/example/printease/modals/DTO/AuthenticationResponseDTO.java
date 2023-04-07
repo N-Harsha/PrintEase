@@ -10,4 +10,7 @@ import lombok.*;
 public class AuthenticationResponseDTO {
     private static final long serialVersionUID = 1L;
     private String token;
+    private String email;
+    private String name;
+    private String userRole;
 }

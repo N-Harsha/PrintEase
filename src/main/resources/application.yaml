@@ -16,7 +16,7 @@ spring:
 
 printEase:
   app:
-    jwtSecret: printEaseSecretKey
+    jwtSecret: BJAMbHq+BKi4BjAq7O2lDEUNtAfgF9cwqRj8lC9LLbf1mfwOG5NBSC4xbo4GfPDkkw0ZY1RWSwNQInLzIsT0l2n+KQHQZzRImJKLVUsDTIfCwg1j+CUfAWK9oC2SNUkxnqsxFND6Rkc1bIO2xO99A+WpYfxwVFpIWcQWEutpnvqLMCd3w4A04QYT3rOaXj8c3lYUKfEV8bB7kPrAPoUjrKUSzX08zdxDzj4mmw==
     jwtExpirationSeconds: 1296000
     refreshExpiryDays: 30
 

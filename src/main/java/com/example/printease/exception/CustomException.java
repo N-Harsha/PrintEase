@@ -1,10 +1,10 @@
-package com.example.printease.exceptions;
+package com.example.printease.exception;
 
 
 import org.springframework.http.HttpStatus;
-
 public class CustomException extends RuntimeException{
     private static final long serialVersionUID = 1488638787124982982L;
+    private ApiError errorResponse;
 
     public CustomException(){super();}
 
@@ -14,6 +14,15 @@ public class CustomException extends RuntimeException{
 
     public CustomException(String message,Throwable cause){super(message, cause);}
 
+    public CustomException(ApiError errorResponse){
+        this.errorResponse=errorResponse;
+    }
 
     public CustomException(String message, HttpStatus status){super(message);}
+
+    public ApiError getErrorResponse(){return errorResponse;}
+
+    public void setErrorResponse(ApiError errorResponse) {
+        this.errorResponse = errorResponse;
+    }
 }
