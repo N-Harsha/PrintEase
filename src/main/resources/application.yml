@@ -4,6 +4,10 @@ spring:
     username: admin
     password: Admin@123
 
+#  spring.jpa.properties.javax.persistence.schema-generation.scripts.action
+#  spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=schema.sql
+#  spring.jpa.properties.hibernate.format_sql=true
+
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
@@ -15,11 +19,20 @@ spring:
       properties:
         hibernate.use_sql_comments: true
         hibernate.format_sql: true
+    properties:
+#      javax.persistence.schema-generation.scripts.action: create-drop
+#      javax.persistence.schema-generation.scripts.create-target: schema.sql
+#      javax.persistence.schema-generation.scripts.drop-target: drop.sql
+#      javax.persistence.schema-generation.create-source: metadata
+#      javax.persistence.schema-generation.drop-source: metadata
+#      javax.persistence.schema-generation.format-sql: true
+      hibernate:
+        format_sql: true
 
 springdoc:
   show-actuator: true
   paths-to-match: /**
-  packages-to-scan: com.farukgenc.boilerplate.springboot
+  packages-to-scan: com.printease.application
 
 management:
   endpoint:
@@ -30,24 +43,9 @@ management:
         exposure:
           include: "*"
 
-logging:
-  level:
-    org.springframework: INFO
-    com.farukgenc.boilerplate.springboot: INFO
-
-## FIXME : Customize JWT token and Swagger information for your application
 
 jwt:
   secretKey: secret
-  issuer: www.farukgenc.com
+  issuer: www.printease.com
   expirationMinute: 10
 
-swagger:
-  contact-name: Faruk Genc
-  contact-mail: omer@farukgenc.com
-  contact-url: https://farukgenc.com
-  app-name: Spring Boot Boilerplate Project
-  app-description: "Spring Boot Boilerplate is a starter kit. This project includes : Spring Boot(2.7.4), Spring Data JPA, Spring Validation, Spring Security + JWT Token, PostgreSQL, Mapstruct, Lombok, Swagger"
-  app-version: 2.0.0
-  app-license-url: https://www.apache.org/licenses/LICENSE-2.0.html
-  app-license: Apache 2.0

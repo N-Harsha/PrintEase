@@ -1,6 +1,7 @@
 package com.printease.application.security.mapper;
 
 import com.printease.application.model.User;
+import com.printease.application.model.UserRole;
 import com.printease.application.security.dto.AuthenticatedUserDto;
 import com.printease.application.security.dto.RegistrationRequest;
 import org.mapstruct.Mapper;
@@ -18,5 +19,6 @@ public interface UserMapper {
 	AuthenticatedUserDto convertToAuthenticatedUserDto(User user);
 
 	User convertToUser(AuthenticatedUserDto authenticatedUserDto);
+
 
 }

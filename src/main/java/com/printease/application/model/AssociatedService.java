@@ -19,10 +19,22 @@ public class AssociatedService {
     @OneToOne
     private Service service;
 
-    @OneToMany(mappedBy = "associatedService")
-    private List<Offer> offerList;
+//    @OneToMany(mappedBy = "associatedService")
+//    private List<Offer> offerList;
 
     @ManyToOne
     @JoinColumn(name = "service_provider_id",nullable = false)
     private ServiceProvider serviceProvider;
+
+    @OneToOne
+    private Orientation  orientation;
+    @OneToOne
+    private PaperSize paperSize;
+    @OneToOne
+    private PaperType paperType;
+    @OneToOne
+    private PrintSide printSide;
+    @OneToOne
+    private PrintingType printingType;
+
 }

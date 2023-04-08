@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  * Created on March, 2023
  *
- * @author Faruk
+ * @author Harsha
  */
 
 @Configuration

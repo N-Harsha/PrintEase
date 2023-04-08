@@ -35,6 +35,7 @@ public class RegistrationRequest {
 	private String password;
 
 	@NotEmpty(message = "{registration_user_role_not_empty}")
+	@Pattern(regexp = "^(customer|admin|service_provider)$", message = "{registration_user_role_is_not_valid}")
 	private String userRole;
 
 	@NotEmpty(message = "{registration_phone_number_not_empty}")

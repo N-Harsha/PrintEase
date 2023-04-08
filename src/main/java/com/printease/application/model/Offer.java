@@ -17,7 +17,7 @@ public class Offer {
     private Integer quantity;
     private Float rate;
 
-    @ManyToOne
-    @JoinColumn(name = "associated_service_id",nullable = false)
-    private AssociatedService associatedService;
+//    @ManyToOne
+//    @JoinColumn(name = "associated_service_id",nullable = false)
+//    private AssociatedService associatedService;
 }

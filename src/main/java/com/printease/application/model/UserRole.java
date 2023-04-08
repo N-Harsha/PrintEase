@@ -1,10 +1,22 @@
 package com.printease.application.model;
 
+import lombok.*;
 
-public enum UserRole {
+import javax.persistence.*;
 
-	ROLE_CUSTOMER,
-	ROLE_SERVICE_PROVIDER,
-	ROLE_ADMIN;
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class UserRole {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(nullable = false,unique = true)
+	private String role;
 
 }

@@ -1,6 +1,8 @@
 package com.printease.application.security.service;
 
 import com.printease.application.security.mapper.ServiceProviderRequestMapper;
+import com.printease.application.security.utils.Constants;
+import com.printease.application.service.UserRoleService;
 import com.printease.application.service.UserValidationService;
 import com.printease.application.model.User;
 import com.printease.application.model.UserRole;
@@ -29,8 +31,9 @@ public class UserService{
 
 	private final CustomerService customerService;
 
-
 	private final UserValidationService userValidationService;
+
+	private final UserRoleService userRoleService;
 
 
 
@@ -44,11 +47,11 @@ public class UserService{
 		userValidationService.validateUser(registrationRequest);
 
 		if(registrationRequest.getUserRole().equalsIgnoreCase("customer")){
-			registrationRequest.setUserRole(UserRole.ROLE_CUSTOMER.toString());
+			registrationRequest.setUserRole(userRoleService.findByRole(Constants.ROLE_CUSTOMER).getRole());
 			return customerService.registration(registrationRequest);
 		}
 		else{
-			registrationRequest.setUserRole(UserRole.ROLE_SERVICE_PROVIDER.toString());
+			registrationRequest.setUserRole(userRoleService.findByRole(Constants.ROLE_SERVICE_PROVIDER).getRole());
 			return serviceProviderService.registration(ServiceProviderRequestMapper.INSTANCE.convertToServiceProviderRegistrationRequest(registrationRequest));
 		}
 

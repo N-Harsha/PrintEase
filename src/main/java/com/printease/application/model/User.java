@@ -34,7 +34,7 @@ public class User {
 
 	private String password;
 
-	@Enumerated(EnumType.STRING)
+	@OneToOne
 	private UserRole userRole;
 
 	private String phoneNumber;
