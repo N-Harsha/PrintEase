@@ -37,29 +37,29 @@ public class UserService{
 
 
 
-	public User findByUsername(String username) {
+	public User findByUsername(String email) {
 
-		return userRepository.findByUsername(username);
+		return userRepository.findByEmail(email);
 	}
 
 	public RegistrationResponse registration(RegistrationRequest registrationRequest) {
 
 		userValidationService.validateUser(registrationRequest);
 
-		if(registrationRequest.getUserRole().equalsIgnoreCase("customer")){
-			registrationRequest.setUserRole(userRoleService.findByRole(Constants.ROLE_CUSTOMER).getRole());
+		if(registrationRequest.getUserRole().getRole().equalsIgnoreCase("customer")){
+			registrationRequest.setUserRole(userRoleService.findByRole(Constants.ROLE_CUSTOMER));
 			return customerService.registration(registrationRequest);
 		}
 		else{
-			registrationRequest.setUserRole(userRoleService.findByRole(Constants.ROLE_SERVICE_PROVIDER).getRole());
+			registrationRequest.setUserRole(userRoleService.findByRole(Constants.ROLE_SERVICE_PROVIDER));
 			return serviceProviderService.registration(ServiceProviderRequestMapper.INSTANCE.convertToServiceProviderRegistrationRequest(registrationRequest));
 		}
 
 	}
 
-	public AuthenticatedUserDto findAuthenticatedUserByUsername(String username) {
+	public AuthenticatedUserDto findAuthenticatedUserByUsername(String email) {
 
-		final User user = findByUsername(username);
+		final User user = findByUsername(email);
 
 		return UserMapper.INSTANCE.convertToAuthenticatedUserDto(user);
 	}

@@ -13,8 +13,8 @@ import javax.validation.constraints.NotEmpty;
 public class LoginRequest {
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty(message = "{login_username_not_empty}")
-	private String username;
+	@NotEmpty(message = "{login_email_not_empty}")
+	private String email;
 
 	@NotEmpty(message = "{login_password_not_empty}")
 	private String password;

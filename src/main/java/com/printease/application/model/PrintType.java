@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PrintingType {
+public class PrintType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

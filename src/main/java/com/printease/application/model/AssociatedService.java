@@ -3,7 +3,6 @@ package com.printease.application.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Setter
@@ -17,7 +16,9 @@ public class AssociatedService {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    private Service service;
+    private PrintService service;
+
+    private Float price;
 
 //    @OneToMany(mappedBy = "associatedService")
 //    private List<Offer> offerList;
@@ -35,6 +36,8 @@ public class AssociatedService {
     @OneToOne
     private PrintSide printSide;
     @OneToOne
-    private PrintingType printingType;
+    private PrintType printType;
+    @OneToOne
+    private BindingType bindingType;
 
 }

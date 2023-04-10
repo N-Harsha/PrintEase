@@ -37,13 +37,13 @@ public class CustomerService {
         customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
         customer.setAccountCreatedOn(LocalDateTime.now());
         customer.setAccountUpdatedOn(LocalDateTime.now());
-        final String username = registrationRequest.getUsername();
+        final String email = registrationRequest.getEmail();
 
         customerRepository.save(customer);
 
-        final String registrationSuccessMessage = generalMessageAccessor.getMessage(null, REGISTRATION_SUCCESSFUL, username);
+        final String registrationSuccessMessage = generalMessageAccessor.getMessage(null, REGISTRATION_SUCCESSFUL, email);
 
-        log.info("{} registered successfully!", username);
+        log.info("{} registered successfully!", email);
 
         return new RegistrationResponse(registrationSuccessMessage);
 

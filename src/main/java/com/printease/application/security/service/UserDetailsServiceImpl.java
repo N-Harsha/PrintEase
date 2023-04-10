@@ -25,15 +25,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private final UserService userService;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) {
+	public UserDetails loadUserByUsername(String email) {
 
-		final AuthenticatedUserDto authenticatedUser = userService.findAuthenticatedUserByUsername(username);
+		final AuthenticatedUserDto authenticatedUser = userService.findAuthenticatedUserByUsername(email);
 
 		if (Objects.isNull(authenticatedUser)) {
 			throw new UsernameNotFoundException(USERNAME_OR_PASSWORD_INVALID);
 		}
 
-		final String authenticatedUsername = authenticatedUser.getUsername();
+		final String authenticatedUsername = authenticatedUser.getEmail();
 		final String authenticatedPassword = authenticatedUser.getPassword();
 		final UserRole userRole = authenticatedUser.getUserRole();
 		final SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userRole.getRole());

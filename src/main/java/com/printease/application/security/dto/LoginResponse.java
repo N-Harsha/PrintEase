@@ -11,6 +11,6 @@ import lombok.Setter;
 public class LoginResponse {
 	private static final long serialVersionUID = 1L;
 	private String token;
-	private String username;
+	private String email;
 	private String role;
 }

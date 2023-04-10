@@ -34,13 +34,13 @@ public class ServiceProviderService {
         serviceProvider.setPassword(bCryptPasswordEncoder.encode(serviceProvider.getPassword()));
         serviceProvider.setAccountCreatedOn(LocalDateTime.now());
         serviceProvider.setAccountUpdatedOn(LocalDateTime.now());
-        final String username = registrationRequest.getUsername();
+        final String email = registrationRequest.getEmail();
 
         serviceProviderRepository.save(serviceProvider);
 
-        final String registrationSuccessMessage = generalMessageAccessor.getMessage(null, REGISTRATION_SUCCESSFUL, username);
+        final String registrationSuccessMessage = generalMessageAccessor.getMessage(null, REGISTRATION_SUCCESSFUL, email);
 
-        log.info("{} registered successfully!", username);
+        log.info("{} registered successfully!", email);
 
         return new RegistrationResponse(registrationSuccessMessage);
 

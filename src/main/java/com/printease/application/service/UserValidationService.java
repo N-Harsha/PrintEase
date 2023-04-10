@@ -26,26 +26,10 @@ public class UserValidationService {
 	public void validateUser(RegistrationRequest registrationRequest) {
 
 		final String email = registrationRequest.getEmail();
-		final String username = registrationRequest.getUsername();
+		final String username = registrationRequest.getEmail();
 		final Address address = registrationRequest.getAddress();
 
 		checkEmail(email);
-		checkUsername(username);
-	}
-
-
-	private void checkUsername(String username) {
-
-		final boolean existsByUsername = userRepository.existsByUsername(username);
-
-		if (existsByUsername) {
-
-			log.warn("{} is already being used!", username);
-
-			final String existsUsername = exceptionMessageAccessor.getMessage(null, USERNAME_ALREADY_EXISTS);
-			throw new RegistrationException(existsUsername);
-		}
-
 	}
 
 	private void checkEmail(String email) {

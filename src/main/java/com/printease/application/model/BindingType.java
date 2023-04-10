@@ -10,17 +10,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Rating {
+public class BindingType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long rating;
-    private String comment;
-    @OneToOne
-    private PrintService service;
-    @ManyToOne
-    private ServiceProvider serviceProvider;
-    @OneToOne
-    private Customer customer;
-
+    private String name;
+    @Lob
+    private String description;
 }

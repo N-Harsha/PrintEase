@@ -1,6 +1,7 @@
 package com.printease.application.security.dto;
 
 import com.printease.application.model.Address;
+import com.printease.application.model.UserRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,17 +27,11 @@ public class RegistrationRequest {
 	@NotEmpty(message = "{registration_email_not_empty}")
 	private String email;
 
-	@NotEmpty(message = "{registration_username_not_empty}")
-	@Pattern(regexp = "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$", message = "{registration_username_is_not_valid}")
-	private String username;
-
 	@NotEmpty(message = "{registration_password_not_empty}")
 	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "{registration_password_is_not_valid}")
 	private String password;
 
-	@NotEmpty(message = "{registration_user_role_not_empty}")
-	@Pattern(regexp = "^(customer|admin|service_provider)$", message = "{registration_user_role_is_not_valid}")
-	private String userRole;
+	private UserRole userRole;
 
 	@NotEmpty(message = "{registration_phone_number_not_empty}")
 	@Pattern(regexp = "^[0-9]{10}$", message = "{registration_phone_number_is_not_valid}")

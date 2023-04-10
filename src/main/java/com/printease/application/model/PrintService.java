@@ -11,20 +11,23 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Service {
+public class PrintService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String serviceName;
+    @Lob
     private String description;
-    @OneToMany
-    private List<PrintingType> printingTypes;
-    @OneToMany
+    @ManyToMany
+    private List<PrintType> printTypes;
+    @ManyToMany
     private List<PrintSide> printSides;
-    @OneToMany
+    @ManyToMany
     private List<PaperSize> paperSizes;
-    @OneToMany
+    @ManyToMany
     private List<PaperType> paperTypes;
-    @OneToMany
+    @ManyToMany
     private List<Orientation> orientations;
+    @ManyToMany
+    private List<BindingType> bindingTypes;
 }
