@@ -16,6 +16,8 @@ import javax.validation.constraints.Pattern;
 @ToString
 @NoArgsConstructor
 public class ServiceProviderRegistrationRequest {
+    private static final long serialVersionUID = 1L;
+
 
     @NotEmpty(message = "{registration_name_not_empty}")
     @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "{registration_name_is_not_valid}")

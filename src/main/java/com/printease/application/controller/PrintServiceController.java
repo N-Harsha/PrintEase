@@ -26,6 +26,6 @@ public class PrintServiceController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PrintService> getService(@PathVariable Long id, Principal principal) {
-        return ResponseEntity.ok(serviceOfPrintService.getService(id, principal.getName()));
+        return ResponseEntity.ok(serviceOfPrintService.getService(id));
     }
 }

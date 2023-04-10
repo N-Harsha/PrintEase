@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AuthenticatedUserDto {
+	private static final long serialVersionUID = 1L;
 
 	private String name;
 

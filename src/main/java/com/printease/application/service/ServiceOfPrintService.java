@@ -37,11 +37,11 @@ public class ServiceOfPrintService {
     }
 
     //this method is only needed by the service provider
-    public PrintService getService(Long id, String email) {
+    public PrintService getService(Long id) {
         PrintService printService = printServiceRepository.findById(id)
                 .orElseThrow(() -> new CustomException(new ApiExceptionResponse(exceptionMessageAccessor
                         .getMessage(null, SERVICE_NOT_FOUND, id), HttpStatus.BAD_REQUEST, LocalDateTime.now())));
-        log.info("fetched service with id {} by user with email {}", id, email);
+        log.info("fetched service with id {}", id);
         return printService;
     }
 
