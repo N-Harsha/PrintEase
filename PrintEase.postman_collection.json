@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "a52232d5-40a1-4a5b-8492-0ab57903a33c",
 		"name": "PrintEase",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26804662"
 	},
 	"item": [
 		{
@@ -12,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe1@example.com\",\r\n  \"password\": \"password\",\r\n  \"userRole\": \"ROLE_SERVICE_PROVIDER\",\r\n  \"phoneNumber\": \"1234567890\",\r\n  \"businessName\": \"Example Business\",\r\n  \"gstIn\": \"ABC123456789012\",\r\n  \"address\": {\r\n    \"addressLine1\": \"123 Main St\",\r\n    \"addressLine2\": \"Apt 456\",\r\n    \"city\": \"Anytown\",\r\n    \"pincode\": 12345,\r\n    \"latitude\": 40.7128,\r\n    \"longitude\": -74.0060,\r\n    \"state\": null\r\n  }\r\n}\r\n",
+					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe2@example.com\",\r\n  \"password\": \"Password@1\",\r\n  \"userRole\": {\"role\":\"ROLE_SERVICE_PROVIDER\"},\r\n  \"phoneNumber\": \"1234567890\",\r\n  \"businessName\": \"Example Business\",\r\n  \"gstIn\": \"ABC123456789012\",\r\n  \"address\": {\r\n    \"addressLine1\": \"123 Main St\",\r\n    \"addressLine2\": \"Apt 456\",\r\n    \"city\": \"Anytown\",\r\n    \"pincode\": 12345,\r\n    \"latitude\": 40.7128,\r\n    \"longitude\": -74.0060,\r\n    \"state\": null\r\n  }\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -42,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe2@example.com\",\r\n  \"password\": \"password\",\r\n  \"userRole\": \"ROLE_CUSTOMER\",\r\n  \"phoneNumber\": \"1234567890\"\r\n}\r\n",
+					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe1@example.com\",\r\n  \"password\": \"Password@1\",\r\n  \"userRole\": {\"role\":\"customer\"},\r\n  \"phoneNumber\": \"1234567890\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -62,6 +63,138 @@
 						"register"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "User login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"johndoe2@example.com\",\r\n  \"password\": \"Password@1\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all print services",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTE0ODM4OSwiaWF0IjoxNjgxMTQ3Nzg5fQ.sSu7IfUeOA6m8hiorwvPF3k5wuMDFh8W2fQjrw40J_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/services",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get a specific service",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTE0ODM4OSwiaWF0IjoxNjgxMTQ3Nzg5fQ.sSu7IfUeOA6m8hiorwvPF3k5wuMDFh8W2fQjrw40J_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/services/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"services",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get associated Services",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTE1Njg4NCwiaWF0IjoxNjgxMTU2Mjg0fQ.m7MLNEr7c3VJWcelJRm5HQDKyF9_nUk-hQpriPd85co",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/associatedServices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"associatedServices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get associated Services with service is as param",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
