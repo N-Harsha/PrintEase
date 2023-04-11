@@ -94,7 +94,192 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "User login with bad creds",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"johndoe2@example.com\",\r\n  \"password\": \"Password\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 12:06:07 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Bad credentials\",\n    \"status\": \"UNAUTHORIZED\",\n    \"time\": \"2023-04-11T17:36:07.6324696\"\n}"
+				},
+				{
+					"name": "User login with good creds",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"johndoe2@example.com\",\r\n  \"password\": \"Password@1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 12:16:59 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTIxNjAxOSwiaWF0IjoxNjgxMjE1NDE5fQ.fE0IpDqphJkRxVfY0HefZjTosKMYfiPaldPyQcP8KGw\",\n    \"email\": \"johndoe2@example.com\",\n    \"name\": \"John Doe\",\n    \"role\": \"ROLE_SERVICE_PROVIDER\"\n}"
+				}
+			]
 		},
 		{
 			"name": "get all print services",
@@ -125,7 +310,91 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "get all print services",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"services"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 10:37:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"serviceName\": \"Document Printing\",\n        \"description\": \"Document printing is the process of creating a physical copy of a digital document. This can be done using a printer that is connected to your computer or other device. You can choose to print your document in black and white or color, depending on your needs and the capabilities of your printer. There are also many online printing services that offer high-quality document printing and binding options. You can al\"\n    },\n    {\n        \"id\": 2,\n        \"serviceName\": \"Document Binding\",\n        \"description\": \"Document binding is the process of securing loose pages together to create a book or booklet. There are several different methods of binding documents, each with its own advantages and uses. Some common binding methods include thermal binding, perfect binding, post binding, saddle-stitched binding, wire binding, and comb binding. The method you choose will depend on the size and purpose of your document, as well as your personal preferences. Binding can help protect your document and keep it in the exact order it was printed in.\"\n    },\n    {\n        \"id\": 3,\n        \"serviceName\": \"Poster Printing\",\n        \"description\": \"! Poster printing is the process of creating large-format prints that are designed to be displayed on walls, windows, notice boards, or other surfaces. Posters can be used to advertise your business, promote an event, or convey information to a wide audience. They come in a variety of sizes and can be printed on different types of paper stock, including glossy and matte finishes. You can create personalized posters by choosing from pre-designed templates or uploading your own design. Poster printing is a great way to grab attention and get your message across to your customers\"\n    }\n]"
+				}
+			]
 		},
 		{
 			"name": "get a specific service",
@@ -157,17 +426,102 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "get a specific service",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/services/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"services",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 10:38:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"serviceName\": \"Document Binding\",\n    \"description\": \"Document binding is the process of securing loose pages together to create a book or booklet. There are several different methods of binding documents, each with its own advantages and uses. Some common binding methods include thermal binding, perfect binding, post binding, saddle-stitched binding, wire binding, and comb binding. The method you choose will depend on the size and purpose of your document, as well as your personal preferences. Binding can help protect your document and keep it in the exact order it was printed in.\",\n    \"printTypes\": [],\n    \"printSides\": [],\n    \"paperSizes\": [],\n    \"paperTypes\": [],\n    \"orientations\": [],\n    \"bindingTypes\": [\n        {\n            \"id\": 1,\n            \"name\": \"Thermal binding\",\n            \"description\": \"A quick and easy method that uses heat to bind the pages together without the need for punching holes.\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Perfect binding\",\n            \"description\": \"A popular method for binding reports and documents that uses an adhesive to attach a paper cover to the spine of the assembled pages.\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Post binding\",\n            \"description\": \"A method that uses chrome or brass rivets to fix the document together.\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Saddle-stitched binding\",\n            \"description\": \"A popular method for smaller documents such as newsletters and calendars that uses staples to hold the folded sheets together along the spine.\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Wire binding\",\n            \"description\": \"A method that uses a C-shaped wire spine to hold punched sheets of paper together by looping through punched holes in the paper.\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Comb binding\",\n            \"description\": \"A similar method to wire binding that uses round plastic spines through rectangular punched holes in the paper.\"\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
-			"name": "get associated Services",
+			"name": "get all associated Service combinations for a service",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTE1Njg4NCwiaWF0IjoxNjgxMTU2Mjg0fQ.m7MLNEr7c3VJWcelJRm5HQDKyF9_nUk-hQpriPd85co",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTIxMDcyMSwiaWF0IjoxNjgxMjEwMTIxfQ.oqV0a9zK4IU8mWokk2oXZLMIyfFGwydpWx94_KrjBow",
 							"type": "string"
 						}
 					]
@@ -175,7 +529,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/associatedServices",
+					"raw": "http://localhost:8080/api/v1/associatedServices?printServiceId=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -185,18 +539,251 @@
 						"api",
 						"v1",
 						"associatedServices"
+					],
+					"query": [
+						{
+							"key": "printServiceId",
+							"value": "1"
+						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "get all associated Service combinations for a service",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/associatedServices?printServiceId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"associatedServices"
+							],
+							"query": [
+								{
+									"key": "printServiceId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 12:01:45 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 3,\n            \"size\": \"A3\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": null,\n        \"orientation\": {\n            \"id\": 2,\n            \"orientation\": \"Landscape\"\n        },\n        \"paperSize\": {\n            \"id\": 2,\n            \"size\": \"A2\"\n        },\n        \"paperType\": {\n            \"id\": 2,\n            \"type\": \"Matte\"\n        },\n        \"printSide\": {\n            \"id\": 2,\n            \"printSideType\": \"Double\"\n        },\n        \"printType\": {\n            \"id\": 2,\n            \"type\": \"Color\"\n        },\n        \"bindingType\": null,\n        \"price\": null\n    },\n    {\n        \"id\": 1,\n        \"orientation\": {\n            \"id\": 1,\n            \"orientation\": \"Portrait\"\n        },\n        \"paperSize\": {\n            \"id\": 4,\n            \"size\": \"A4\"\n        },\n        \"paperType\": {\n            \"id\": 1,\n            \"type\": \"Glossy\"\n        },\n        \"printSide\": {\n            \"id\": 1,\n            \"printSideType\": \"Single\"\n        },\n        \"printType\": {\n            \"id\": 1,\n            \"type\": \"Black and White\"\n        },\n        \"bindingType\": null,\n        \"price\": 10.2\n    }\n]"
+				}
+			]
 		},
 		{
-			"name": "get associated Services with service is as param",
+			"name": "add new Associated service for service provider",
 			"request": {
-				"method": "GET",
-				"header": []
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTIxMDcyMSwiaWF0IjoxNjgxMjEwMTIxfQ.oqV0a9zK4IU8mWokk2oXZLMIyfFGwydpWx94_KrjBow",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": null,\r\n        \"orientation\": {\r\n            \"id\": 1,\r\n            \"orientation\": \"Portrait\"\r\n        },\r\n        \"paperSize\": {\r\n            \"id\": 4,\r\n            \"size\": \"A4\"\r\n        },\r\n        \"paperType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Glossy\"\r\n        },\r\n        \"printSide\": {\r\n            \"id\": 1,\r\n            \"printSideType\": \"Single\"\r\n        },\r\n        \"printType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Black and White\"\r\n        },\r\n        \"bindingType\": null,\r\n        \"price\": 10.2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/associatedServices?printServiceId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"associatedServices"
+					],
+					"query": [
+						{
+							"key": "printServiceId",
+							"value": "1"
+						}
+					]
+				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "add new Associated service for service provider",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": null,\r\n        \"orientation\": {\r\n            \"id\": 1,\r\n            \"orientation\": \"Portrait\"\r\n        },\r\n        \"paperSize\": {\r\n            \"id\": 4,\r\n            \"size\": \"A4\"\r\n        },\r\n        \"paperType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Glossy\"\r\n        },\r\n        \"printSide\": {\r\n            \"id\": 1,\r\n            \"printSideType\": \"Single\"\r\n        },\r\n        \"printType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Black and White\"\r\n        },\r\n        \"bindingType\": null,\r\n        \"price\": 10.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/associatedServices?printServiceId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"associatedServices"
+							],
+							"query": [
+								{
+									"key": "printServiceId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 11:55:19 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "associated service created successfully!"
+				}
+			]
 		}
 	]
 }
