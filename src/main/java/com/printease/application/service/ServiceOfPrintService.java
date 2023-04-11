@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class ServiceOfPrintService {
     private final PrintServiceRepository printServiceRepository;
     private final ExceptionMessageAccessor exceptionMessageAccessor;
-    private final String SERVICE_NOT_FOUND = "service_not_found";
+    private final String SERVICE_NOT_FOUND = "service_does_not_exist";
 
     public List<PrintServiceDto> getAllServices(Principal principal) {
         //add user authorization logic here.

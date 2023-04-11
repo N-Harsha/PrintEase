@@ -171,7 +171,6 @@ public class ServiceOfAssociatedService {
     public ResponseEntity<List<AssociatedService>> getAssociatedServices(String email, Long printServiceId) {
         ServiceProvider serviceProvider = serviceOfServiceProvider.findServiceProviderByUserEmail(email);
         log.info("fetched service provider with id {}", serviceProvider.getId());
-
         if(printServiceId==null){
             log.info("fetching all associated services");
             return ResponseEntity.ok(associatedServiceRepository.findAllByServiceProvider(serviceProvider));

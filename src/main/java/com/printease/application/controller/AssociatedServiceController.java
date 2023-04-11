@@ -21,7 +21,8 @@ public class AssociatedServiceController {
         return serviceOfAssociatedService.addAssociatedService(principal.getName(), associatedServiceDto);
     }
     @GetMapping
-    public ResponseEntity<List<AssociatedService>> getAssociatedServices(Principal principal, @RequestParam(required = false) Long printServiceId){
+    //printServiceId is required
+    public ResponseEntity<List<AssociatedService>> getAssociatedServices(Principal principal, Long printServiceId){
         return serviceOfAssociatedService.getAssociatedServices(principal.getName(),printServiceId);
     }
 
