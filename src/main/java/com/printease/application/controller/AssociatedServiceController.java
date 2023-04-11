@@ -17,22 +17,22 @@ import java.util.List;
 public class AssociatedServiceController {
     private final ServiceOfAssociatedService serviceOfAssociatedService;
     @PostMapping
-    public ResponseEntity<String> addAssociatedService(Principal principal,@Valid @RequestBody AssociatedServiceDto associatedServiceDto){
-        return serviceOfAssociatedService.addAssociatedService(principal.getName(), associatedServiceDto);
+    public ResponseEntity<String> addAssociatedService(Principal principal,@Valid @RequestBody AssociatedServiceDto associatedServiceDto, @RequestParam Long printServiceId){
+        return serviceOfAssociatedService.addAssociatedService(principal.getName(), associatedServiceDto,printServiceId);
     }
     @GetMapping
     //printServiceId is required
-    public ResponseEntity<List<AssociatedService>> getAssociatedServices(Principal principal, Long printServiceId){
+    public ResponseEntity<List<AssociatedServiceDto>> getAssociatedServices(Principal principal,@RequestParam Long printServiceId){
         return serviceOfAssociatedService.getAssociatedServices(principal.getName(),printServiceId);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateAssociatedService(Principal principal, @PathVariable Long id, @Valid @RequestBody AssociatedServiceDto associatedServiceDto){
-        return serviceOfAssociatedService.updateAssociatedService(principal.getName(), id, associatedServiceDto);
+    @PutMapping("/{associatedServiceId}")
+    public ResponseEntity<String> updateAssociatedService(Principal principal, @PathVariable Long associatedServiceId, @Valid @RequestBody AssociatedServiceDto associatedServiceDto){
+        return serviceOfAssociatedService.updateAssociatedService(principal.getName(), associatedServiceId, associatedServiceDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteAssociatedService(Principal principal, @PathVariable Long id){
-        return serviceOfAssociatedService.deleteAssociatedService(principal.getName(), id);
+    @DeleteMapping("/{associatedServiceId}")
+    public ResponseEntity<String> deleteAssociatedService(Principal principal, @PathVariable Long associatedServiceId){
+        return serviceOfAssociatedService.deleteAssociatedService(principal.getName(), associatedServiceId);
     }
 }
