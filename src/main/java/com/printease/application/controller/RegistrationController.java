@@ -21,7 +21,6 @@ public class RegistrationController {
 	private final UserService userService;
 
 	@PostMapping("/register")
-	@PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
 	public ResponseEntity<RegistrationResponse> registrationRequest(@Valid @RequestBody RegistrationRequest registrationRequest) {
 
 		final RegistrationResponse registrationResponse = userService.registration(registrationRequest);
