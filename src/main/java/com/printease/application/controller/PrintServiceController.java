@@ -5,6 +5,7 @@ import com.printease.application.security.dto.PrintServiceDto;
 import com.printease.application.service.ServiceOfPrintService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +21,13 @@ public class PrintServiceController {
     private final ServiceOfPrintService serviceOfPrintService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
     public ResponseEntity<List<PrintServiceDto>> getServices(Principal principal){
         return ResponseEntity.ok(serviceOfPrintService.getAllServices(principal));
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
     public ResponseEntity<PrintService> getService(@PathVariable Long id, Principal principal) {
         return ResponseEntity.ok(serviceOfPrintService.getService(id));
     }
