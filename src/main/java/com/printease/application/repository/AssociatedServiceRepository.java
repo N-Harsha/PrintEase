@@ -1,8 +1,7 @@
 package com.printease.application.repository;
 
-import com.printease.application.model.AssociatedService;
-import com.printease.application.model.PrintService;
-import com.printease.application.model.ServiceProvider;
+import com.printease.application.model.*;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -39,7 +38,14 @@ public class ServiceOfAssociatedService {
         log.info("fetched service provider with id {}", serviceProvider.getId());
         PrintService printService = serviceOfPrintService.getService(printServiceId);
         AssociatedService associatedService = AssociatedServiceMapper.INSTANCE.convertToAssociatedService(associatedServiceDto);
-        associatedService.setService(printService);
+        List<AssociatedService> associatedServices = associatedServiceRepository.findAllByServiceProviderAndService(serviceProvider,printService);
+        if(findAssociatedServiceInExistingList(associatedServices,associatedService))
+        {
+            final String ASSOCIATED_SERVICE_ALREADY_EXISTS = "associated_service_already_exists";
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
+                    ASSOCIATED_SERVICE_ALREADY_EXISTS), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+        }
+                    associatedService.setService(printService);
         associatedService.setServiceProvider(serviceProvider);
         associatedServiceRepository.save(associatedService);
         log.info("generated associated service with id {}", associatedService.getId());
@@ -48,6 +54,7 @@ public class ServiceOfAssociatedService {
     }
 
 
+    @Transactional
     public ResponseEntity<List<AssociatedServiceDto>> getAssociatedServices(String email, Long printServiceId) {
         ServiceProvider serviceProvider = serviceOfServiceProvider.findServiceProviderByUserEmail(email);
         log.info("fetched service provider with id {}", serviceProvider.getId());
@@ -143,14 +150,15 @@ public class ServiceOfAssociatedService {
     }
 
 
-    public ResponseEntity<String> updateAssociatedService(String email, Long associatedServiceId, AssociatedServiceDto associatedServiceDto) {
+    @Transactional
+    public ResponseEntity<String> updateAssociatedService(String email, AssociatedServiceDto associatedServiceDto) {
         ServiceProvider serviceProvider = serviceOfServiceProvider.findServiceProviderByUserEmail(email);
         log.info("fetched service provider with id {}", serviceProvider.getId());
-        if (!associatedServiceRepository.existsByIdAndServiceProvider(associatedServiceId, serviceProvider))
-            throw new CustomException(new ApiExceptionResponse(generalMessageAccessor.getMessage(
+        if (!associatedServiceRepository.existsByIdAndServiceProvider(associatedServiceDto.getId(), serviceProvider))
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(
                     null, ASSOCIATED_SERVICE_NOT_FOUND), HttpStatus.NOT_FOUND, LocalDateTime.now()));
-        log.info("associated service with id {} exists", associatedServiceId);
-        PrintService printService = serviceOfPrintService.getService(associatedServiceId);
+        log.info("associated service with id {} exists", associatedServiceDto.getId());
+        PrintService printService = serviceOfPrintService.getService(associatedServiceDto.getId());
         AssociatedService associatedService = AssociatedServiceMapper.INSTANCE.convertToAssociatedService(associatedServiceDto);
         associatedService.setService(printService);
         associatedService.setServiceProvider(serviceProvider);
@@ -160,11 +168,12 @@ public class ServiceOfAssociatedService {
     }
 
 
+    @Transactional
     public ResponseEntity<String> deleteAssociatedService(String email, Long associatedServiceId) {
         ServiceProvider serviceProvider = serviceOfServiceProvider.findServiceProviderByUserEmail(email);
         log.info("fetched service provider with id {}", serviceProvider.getId());
         if (!associatedServiceRepository.existsByIdAndServiceProvider(associatedServiceId, serviceProvider))
-            throw new CustomException(new ApiExceptionResponse(generalMessageAccessor.getMessage(
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(
                     null, ASSOCIATED_SERVICE_NOT_FOUND), HttpStatus.NOT_FOUND, LocalDateTime.now()));
         log.info("associated service with id {} exists", associatedServiceId);
         associatedServiceRepository.deleteById(associatedServiceId);

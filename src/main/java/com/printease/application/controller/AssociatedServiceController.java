@@ -26,9 +26,9 @@ public class AssociatedServiceController {
         return serviceOfAssociatedService.getAssociatedServices(principal.getName(),printServiceId);
     }
 
-    @PutMapping("/{associatedServiceId}")
-    public ResponseEntity<String> updateAssociatedService(Principal principal, @PathVariable Long associatedServiceId, @Valid @RequestBody AssociatedServiceDto associatedServiceDto){
-        return serviceOfAssociatedService.updateAssociatedService(principal.getName(), associatedServiceId, associatedServiceDto);
+    @PutMapping
+    public ResponseEntity<String> updateAssociatedService(Principal principal, @Valid @RequestBody AssociatedServiceDto associatedServiceDto){
+        return serviceOfAssociatedService.updateAssociatedService(principal.getName(), associatedServiceDto);
     }
 
     @DeleteMapping("/{associatedServiceId}")
