@@ -17,15 +17,15 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth")
 public class LoginController {
 
-	private final JwtTokenService jwtTokenService;
+    private final JwtTokenService jwtTokenService;
 
-	@PostMapping("/login")
-	@PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
-	public ResponseEntity<LoginResponse> loginRequest(@Valid @RequestBody LoginRequest loginRequest) {
+    @PostMapping("/login")
 
-		final LoginResponse loginResponse = jwtTokenService.getLoginResponse(loginRequest);
+    public ResponseEntity<LoginResponse> loginRequest(@Valid @RequestBody LoginRequest loginRequest) {
 
-		return ResponseEntity.ok(loginResponse);
-	}
+        final LoginResponse loginResponse = jwtTokenService.getLoginResponse(loginRequest);
+
+        return ResponseEntity.ok(loginResponse);
+    }
 
 }

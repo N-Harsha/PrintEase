@@ -1,15 +1,23 @@
 package com.printease.application.service;
 
+import com.printease.application.exceptions.ApiExceptionResponse;
+import com.printease.application.exceptions.CustomException;
 import com.printease.application.model.FileDB;
+import com.printease.application.model.Order;
 import com.printease.application.repository.FileRepository;
+import com.printease.application.utils.ExceptionMessageAccessor;
+import com.printease.application.utils.ProjectConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.sql.Blob;
+import java.time.LocalDateTime;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
@@ -19,6 +27,8 @@ import java.util.zip.InflaterInputStream;
 @RequiredArgsConstructor
 public class FileService {
     private final FileRepository fileRepository;
+    private final OrderService orderService;
+    private final ExceptionMessageAccessor exceptionMessageAccessor;
 
     public FileDB saveCompressedFileToDatabase(MultipartFile file) throws IOException {
 
@@ -54,5 +64,35 @@ public class FileService {
         }
         baos.close();
         return baos.toByteArray();
+    }
+
+    public ResponseEntity<byte[]> downloadFile(Long fileId, String email) throws IOException {
+        FileDB file = fileRepository.findById(fileId).orElseThrow(() -> new CustomException(
+                new ApiExceptionResponse(
+                        exceptionMessageAccessor.getMessage(null, ProjectConstants.FILE_NOT_FOUND, fileId),
+                        HttpStatus.BAD_REQUEST, LocalDateTime.now()
+                )
+        ));
+
+        Order order = orderService.getOrderByFileId(file.getId());
+        //future only the service provider can only download the file if the order is the accepted or above stages.
+        if (!order.getCustomer().getEmail().equalsIgnoreCase(email) &&
+                !order.getAssociatedService().getServiceProvider()
+                        .getEmail().equalsIgnoreCase(email)) {
+            throw new CustomException(
+                    new ApiExceptionResponse(
+                            exceptionMessageAccessor.getMessage(null, ProjectConstants.DOWNLOAD_NOT_AUTHORIZED, fileId),
+                            HttpStatus.FORBIDDEN, LocalDateTime.now()
+                    )
+            );
+        }
+
+        byte[] fileBytes = decompress(file.getData());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf(file.getType()));
+        headers.setContentDisposition(ContentDisposition.attachment().filename(file.getName()).build());
+
+        return new ResponseEntity<>(fileBytes, headers, HttpStatus.OK);
     }
 }

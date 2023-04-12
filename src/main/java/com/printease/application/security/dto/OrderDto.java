@@ -20,8 +20,9 @@ public class OrderDto {
     private String serviceName;
     private String comment;
     private LocalDateTime dueDate;
-    private LocalDateTime orderDate;
+    private LocalDateTime createdOn;
     private String orderStatus;
     private Integer quantity;
     private Float price;
+    private String fileDownloadableUrl;
 }

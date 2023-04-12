@@ -24,7 +24,7 @@ public class Order {
     private OrderStatus orderStatus;
     @OneToOne
     private FileDB file;
-    private LocalDateTime orderCreatedOn;
+    private LocalDateTime createdOn;
     private LocalDateTime dueDate;
     private String comment;
     private Integer quantity;

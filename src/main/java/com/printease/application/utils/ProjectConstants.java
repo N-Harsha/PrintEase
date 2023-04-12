@@ -6,11 +6,15 @@ import java.util.Locale;
 public final class ProjectConstants {
 
 	// FIXME : Customize project constants for your application.
-
+	public static final String APPLICATION_NAME = "PrintEase";
+	public static final String APPLICATION_DESCRIPTION = "PrintEase is a web application that allows users to order printing services online.";
+	public static final String APPLICATION_VERSION = "1.0.0";
+	public static final String BASE_URL = "http://localhost:8080";
 	public static final String DEFAULT_ENCODING = "UTF-8";
 	public static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
 	public static final String FILE_TYPES = "image/jpeg, image/png, application/pdf";
+	// order status constants
 	public static final String ACCEPTED_ORDER_STATUS = "Accepted";
 	public static final String REJECTED_ORDER_STATUS = "Rejected";
 	public static final String PENDING_ORDER_STATUS = "Pending";
@@ -18,14 +22,25 @@ public final class ProjectConstants {
 	public static final String COMPLETED_ORDER_STATUS = "Completed";
 	public static final String IN_PROGRESS_ORDER_STATUS = "In Progress";
 
+	//user roles
+	public static final String ROLE_CUSTOMER = "ROLE_CUSTOMER";
+	public static final String ROLE_SERVICE_PROVIDER = "ROLE_SERVICE_PROVIDER";
+
 	//exception message constants
 
 	public static final String INVALID_DUE_DATE = "invalid_due_date";
 
 	public static final String FILE_UPLOAD_ERROR = "file_upload_error";
-	//success message constants
+	public static final String USER_NOT_FOUND = "user_not_found";
+	public static final String INVALID_USER_ROLE = "invalid_user_role";
+	public static final String FILE_NOT_FOUND = "file_not_found";
+	public static final String FILE_CANNOT_BE_DOWNLOADED = "file_cannot_be_downloaded";
+	public static final String ORDER_NOT_FOUND = "order_not_found";
+	public static final String DOWNLOAD_NOT_AUTHORIZED = "download_not_authorized";
 
+	//success message constants
 	public static final String ORDER_CREATED_SUCCESSFULLY = "order_created_successfully";
+
 
 
 	private ProjectConstants() {

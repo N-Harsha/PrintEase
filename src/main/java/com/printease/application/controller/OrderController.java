@@ -18,8 +18,8 @@ public class OrderController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
-    public ResponseEntity<?> getAllOrders(){
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> getAllOrders(Principal principal){
+        return orderService.getAllOrders(principal.getName());
     }
 
     @PostMapping
@@ -28,5 +28,6 @@ public class OrderController {
                                          @ModelAttribute OrderCreationRequestDto orderCreationRequestDto){
         return orderService.createOrder(principal.getName(), orderCreationRequestDto);
     }
+
 
 }

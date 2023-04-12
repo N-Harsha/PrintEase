@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDtoServiceProvider extends OrderDto{
+public class OrderDtoServiceProvider extends OrderDto {
     private static final long serialVersionUID = 1L;
     private String customerName;
 }

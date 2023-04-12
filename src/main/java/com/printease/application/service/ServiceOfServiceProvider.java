@@ -11,6 +11,7 @@ import com.printease.application.security.dto.ServiceProviderRegistrationRequest
 import com.printease.application.security.mapper.ServiceProviderMapper;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.GeneralMessageAccessor;
+import com.printease.application.utils.ProjectConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,6 @@ public class ServiceOfServiceProvider {
     private final ExceptionMessageAccessor exceptionMessageAccessor;
 
     private final String SERVICE_PROVIDER_NOT_FOUND = "service_provider_not_found";
-    private final String USER_NOT_FOUND = "user_not_found";
     private static final String REGISTRATION_SUCCESSFUL = "registration_successful";
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -54,7 +54,7 @@ public class ServiceOfServiceProvider {
     public ServiceProvider findServiceProviderByUserEmail(String email) {
         User user = userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new CustomException(new ApiExceptionResponse(
-                        exceptionMessageAccessor.getMessage(null, USER_NOT_FOUND, email),
+                        exceptionMessageAccessor.getMessage(null, ProjectConstants.USER_NOT_FOUND, email),
                         HttpStatus.BAD_REQUEST, LocalDateTime.now())));
         return serviceProviderRepository.findById(user.getId()).orElseThrow(() -> new CustomException(new ApiExceptionResponse(
                 exceptionMessageAccessor.getMessage(null, SERVICE_PROVIDER_NOT_FOUND, email),
