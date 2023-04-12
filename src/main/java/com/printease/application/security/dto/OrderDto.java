@@ -19,7 +19,7 @@ public class OrderDto {
     private AssociatedServiceDto associatedService;
     private String serviceName;
     private String comment;
-    private LocalDateTime deadline;
+    private LocalDateTime dueDate;
     private LocalDateTime orderDate;
     private String orderStatus;
     private Integer quantity;

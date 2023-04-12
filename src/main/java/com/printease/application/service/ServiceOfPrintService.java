@@ -7,10 +7,8 @@ import com.printease.application.repository.PrintServiceRepository;
 import com.printease.application.security.dto.PrintServiceDto;
 import com.printease.application.security.mapper.PrintServiceMapper;
 import com.printease.application.utils.ExceptionMessageAccessor;
-import com.printease.application.utils.GeneralMessageAccessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +42,4 @@ public class ServiceOfPrintService {
         log.info("fetched service with id {}", id);
         return printService;
     }
-
 }

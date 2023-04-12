@@ -32,11 +32,51 @@ public class ServiceOfAssociatedService {
     private final GeneralMessageAccessor generalMessageAccessor;
     private final String ASSOCIATED_SERVICE_NOT_FOUND = "associated_service_not_found";
 
+
+    public void validateAssociatedServiceDto(AssociatedServiceDto associatedServiceDto,PrintService printService){
+        if(associatedServiceDto.getOrientation()!=null && printService.getOrientations().stream().noneMatch(orientation -> Objects.equals(orientation.getId(), associatedServiceDto.getOrientation().getId())))
+        {
+            final String ORIENTATION_NOT_FOUND = "orientation_not_found";
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
+                    ORIENTATION_NOT_FOUND), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+        }
+        if(associatedServiceDto.getPaperType()!=null && printService.getPaperTypes().stream().noneMatch(paperType -> Objects.equals(paperType.getId(), associatedServiceDto.getPaperType().getId())))
+        {
+            final String PAPER_TYPE_NOT_FOUND = "paper_type_not_found";
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
+                    PAPER_TYPE_NOT_FOUND), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+        }
+        if(associatedServiceDto.getPaperSize()!=null && printService.getPaperSizes().stream().noneMatch(paperSize -> Objects.equals(paperSize.getId(), associatedServiceDto.getPaperSize().getId())))
+        {
+            final String PAPER_SIZE_NOT_FOUND = "paper_size_not_found";
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
+                    PAPER_SIZE_NOT_FOUND), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+        }
+        if(associatedServiceDto.getPrintSide()!=null && printService.getPrintSides().stream().noneMatch(printSide -> Objects.equals(printSide.getId(), associatedServiceDto.getPrintSide().getId())))
+        {
+            final String PRINT_SIDE_NOT_FOUND = "print_side_not_found";
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
+                    PRINT_SIDE_NOT_FOUND), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+        }
+        if(associatedServiceDto.getPrintType()!=null && printService.getPrintTypes().stream().noneMatch(printType -> Objects.equals(printType.getId(), associatedServiceDto.getPrintType().getId())))
+        {
+            final String PRINT_TYPE_NOT_FOUND = "print_type_not_found";
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
+                    PRINT_TYPE_NOT_FOUND), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+        }
+        if(associatedServiceDto.getBindingType()!=null && printService.getBindingTypes().stream().noneMatch(bindingType -> Objects.equals(bindingType.getId(), associatedServiceDto.getBindingType().getId())))
+        {
+            final String BINDING_TYPE_NOT_FOUND = "binding_type_not_found";
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
+                    BINDING_TYPE_NOT_FOUND), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+        }
+    }
     @Transactional
     public ResponseEntity<String> addAssociatedService(String email, AssociatedServiceDto associatedServiceDto, Long printServiceId) {
         ServiceProvider serviceProvider = serviceOfServiceProvider.findServiceProviderByUserEmail(email);
         log.info("fetched service provider with id {}", serviceProvider.getId());
         PrintService printService = serviceOfPrintService.getService(printServiceId);
+        validateAssociatedServiceDto(associatedServiceDto,printService);
         AssociatedService associatedService = AssociatedServiceMapper.INSTANCE.convertToAssociatedService(associatedServiceDto);
         List<AssociatedService> associatedServices = associatedServiceRepository.findAllByServiceProviderAndService(serviceProvider,printService);
         if(findAssociatedServiceInExistingList(associatedServices,associatedService))
@@ -159,6 +199,7 @@ public class ServiceOfAssociatedService {
                     null, ASSOCIATED_SERVICE_NOT_FOUND), HttpStatus.NOT_FOUND, LocalDateTime.now()));
         log.info("associated service with id {} exists", associatedServiceDto.getId());
         PrintService printService = serviceOfPrintService.getService(associatedServiceDto.getId());
+        validateAssociatedServiceDto(associatedServiceDto, printService);
         AssociatedService associatedService = AssociatedServiceMapper.INSTANCE.convertToAssociatedService(associatedServiceDto);
         associatedService.setService(printService);
         associatedService.setServiceProvider(serviceProvider);
@@ -180,5 +221,10 @@ public class ServiceOfAssociatedService {
         log.info("associated service with id {} deleted", associatedServiceId);
         String ASSOCIATED_SERVICE_DELETED_SUCCESSFULLY = "associated_service_deleted_successfully";
         return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ASSOCIATED_SERVICE_DELETED_SUCCESSFULLY));
+    }
+
+    public AssociatedService findAssociatedServiceById(Long id){
+        return associatedServiceRepository.findById(id).orElseThrow(() -> new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(
+                null, ASSOCIATED_SERVICE_NOT_FOUND), HttpStatus.NOT_FOUND, LocalDateTime.now())));
     }
 }

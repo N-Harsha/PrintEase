@@ -20,6 +20,7 @@ public class BootstrapRunner implements CommandLineRunner {
     private final PrintTypeRepository printTypeRepository;
     private final PrintServiceRepository printServiceRepository;
     private final BindingTypeRepository bindingTypeRepository;
+    private final OrderStatusRepository orderStatusRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -127,5 +128,14 @@ public class BootstrapRunner implements CommandLineRunner {
                         .printTypes(List.of(blackAndWhitePrintType,colorPrintType))
                         .paperTypes(List.of(glossyPaperType,mattePaperType,satinPaperType,lustrePaperType,photoPaperType))
                 .build());
+
+        OrderStatus pendingStatus = orderStatusRepository.save(OrderStatus.builder().status("Pending").build());
+        OrderStatus acceptedStatus = orderStatusRepository.save(OrderStatus.builder().status("Accepted").build());
+        OrderStatus rejectedStatus = orderStatusRepository.save(OrderStatus.builder().status("Rejected").build());
+        OrderStatus inProgressStatus = orderStatusRepository.save(OrderStatus.builder().status("In Progress").build());
+        OrderStatus completedStatus = orderStatusRepository.save(OrderStatus.builder().status("Completed").build());
+        OrderStatus cancelledStatus = orderStatusRepository.save(OrderStatus.builder().status("Cancelled").build());
+
+//        orderStatusRepository.save()
     }
 }

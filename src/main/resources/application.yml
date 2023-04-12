@@ -11,7 +11,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
       show-sql: true
       format-sql: true
       type: info
@@ -47,5 +47,5 @@ management:
 jwt:
   secretKey: secret
   issuer: www.printease.com
-  expirationMinute: 10
+  expirationMinute: 120
 

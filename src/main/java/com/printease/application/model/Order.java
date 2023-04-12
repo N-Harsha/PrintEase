@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +24,8 @@ public class Order {
     private OrderStatus orderStatus;
     @OneToOne
     private FileDB file;
-    private LocalDateTime orderDate;
-    private LocalDateTime deadline;
+    private LocalDateTime orderCreatedOn;
+    private LocalDateTime dueDate;
     private String comment;
     private Integer quantity;
     private Float price;
