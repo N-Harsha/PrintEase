@@ -113,18 +113,17 @@ public class OrderService {
     }
 
 
-
-    public boolean checkIfOrderIsAssociatedWithUser(Order order,String email){
+    public boolean checkIfOrderIsAssociatedWithUser(Order order, String email) {
         return !order.getCustomer().getEmail().equalsIgnoreCase(email) && !order.getAssociatedService().getServiceProvider().getEmail().equalsIgnoreCase(email);
     }
 
     @Transactional
-    public ResponseEntity<?> cancelOrder(String email, Long orderId,String comment) {
+    public ResponseEntity<?> cancelOrder(String email, Long orderId, String comment) {
         User user = userService.findByEmail(email);
         log.info("fetched user with email: {}", email);
         Order order = getOrderById(orderId);
         log.info("fetched order with id: {}", orderId);
-        if(checkIfOrderIsAssociatedWithUser(order, email)){
+        if (checkIfOrderIsAssociatedWithUser(order, email)) {
             throw new CustomException(
                     new ApiExceptionResponse(
                             exceptionMessageAccessor.getMessage(null,
@@ -133,50 +132,52 @@ public class OrderService {
                     )
             );
         }
-        if(user.getUserRole().getRole().equalsIgnoreCase(ProjectConstants.ROLE_CUSTOMER)) {
-            if(order.getOrderStatus().getStatus().equals(ProjectConstants.PENDING_ORDER_STATUS)||
-                    order.getOrderStatus().getStatus().equals(ProjectConstants.ACCEPTED_ORDER_STATUS)){
+        if (user.getUserRole().getRole().equalsIgnoreCase(ProjectConstants.ROLE_CUSTOMER)) {
+            if (order.getOrderStatus().getStatus().equals(ProjectConstants.PENDING_ORDER_STATUS) ||
+                    order.getOrderStatus().getStatus().equals(ProjectConstants.ACCEPTED_ORDER_STATUS)) {
                 order.setOrderStatus(orderStatusService.getOrderStatusByStatus(ProjectConstants.CANCELLED_ORDER_STATUS));
                 order.getOrderStatusLogList().add(OrderStatusLog.builder()
+                        .updatedBy(user.getUserRole().getRole())
                         .orderStatus(order.getOrderStatus())
                         .updatedOn(LocalDateTime.now())
-                                .comment(comment)
+                        .comment(comment)
                         .build());
                 log.info("Order cancelled successfully");
                 return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus()));
             } else {
                 log.error("Order cannot be cancelled");
                 throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor
-                        .getMessage(null, ProjectConstants.ORDER_CANNOT_BE_CANCELLED,order.getOrderStatus().getStatus()), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+                        .getMessage(null, ProjectConstants.ORDER_CANNOT_BE_CANCELLED, order.getOrderStatus().getStatus()), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
             }
 
-        } else if(user.getUserRole().getRole().equalsIgnoreCase(ProjectConstants.ROLE_SERVICE_PROVIDER)) {
+        } else if (user.getUserRole().getRole().equalsIgnoreCase(ProjectConstants.ROLE_SERVICE_PROVIDER)) {
 
             if (order.getOrderStatus().getStatus().equals(ProjectConstants.PENDING_ORDER_STATUS)) {
                 order.setOrderStatus(orderStatusService.getOrderStatusByStatus(ProjectConstants.REJECTED_ORDER_STATUS));
                 order.getOrderStatusLogList().add(OrderStatusLog.builder()
+                        .updatedBy(user.getUserRole().getRole())
                         .orderStatus(order.getOrderStatus())
-                                .comment(comment)
+                        .comment(comment)
                         .updatedOn(LocalDateTime.now())
                         .build());
                 log.info("Order rejected successfully");
-                return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.ORDER_STATUS_UPDATED,order.getOrderStatus().getStatus()));
-            }
-            else{
-                if(order.getOrderStatus().getStatus().equals(ProjectConstants.COMPLETED_ORDER_STATUS)){
+                return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus()));
+            } else {
+                if (order.getOrderStatus().getStatus().equals(ProjectConstants.COMPLETED_ORDER_STATUS)) {
                     log.error("Order cannot be cancelled");
                     throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor
-                            .getMessage(null, ProjectConstants.ORDER_CANNOT_BE_CANCELLED,order.getOrderStatus()), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+                            .getMessage(null, ProjectConstants.ORDER_CANNOT_BE_CANCELLED, order.getOrderStatus()), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
                 }
                 order.setOrderStatus(orderStatusService.getOrderStatusByStatus(ProjectConstants.CANCELLED_ORDER_STATUS));
                 order.getOrderStatusLogList().add(OrderStatusLog.builder()
+                        .updatedBy(user.getUserRole().getRole())
                         .orderStatus(order.getOrderStatus())
-                                .comment(comment)
+                        .comment(comment)
                         .updatedOn(LocalDateTime.now())
                         .build());
                 log.info("Order cancelled successfully");
                 return ResponseEntity.ok(generalMessageAccessor
-                        .getMessage(null, ProjectConstants.ORDER_STATUS_UPDATED,order.getOrderStatus().getStatus()));
+                        .getMessage(null, ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus()));
             }
 
         } else {
@@ -193,10 +194,10 @@ public class OrderService {
     }
 
     @Transactional
-    public ResponseEntity<?> promoteOrder(String email, Long orderId,String comment) {
+    public ResponseEntity<?> promoteOrder(String email, Long orderId, String comment) {
         Order order = getOrderById(orderId);
         log.info("fetched order with id: {}", orderId);
-        if(!order.getAssociatedService().getServiceProvider().getEmail().equalsIgnoreCase(email)){
+        if (!order.getAssociatedService().getServiceProvider().getEmail().equalsIgnoreCase(email)) {
             throw new CustomException(
                     new ApiExceptionResponse(
                             exceptionMessageAccessor.getMessage(null,
@@ -205,23 +206,26 @@ public class OrderService {
                     )
             );
         }
+        User user = userService.findByEmail(email);
         OrderStatus nextOrderStatus = getNextOrderStatus(order);
         log.info("fetched next order status: {}", nextOrderStatus.getStatus());
         order.setOrderStatus(nextOrderStatus);
         order.getOrderStatusLogList().add(OrderStatusLog.builder()
+                .updatedBy(user.getUserRole().getRole())
                 .orderStatus(order.getOrderStatus())
-                                .comment(comment)
+                .comment(comment)
                 .updatedOn(LocalDateTime.now())
                 .build());
         log.info("Order promoted successfully");
         return ResponseEntity.ok(generalMessageAccessor.getMessage(null,
-                ProjectConstants.ORDER_STATUS_UPDATED,order.getOrderStatus().getStatus(),order.getOrderStatus().getStatus()));
+                ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus(), order.getOrderStatus().getStatus()));
     }
-    private OrderStatus getNextOrderStatus(Order order){
-        List<String> orderStatusArray =  ProjectConstants.ORDER_STATUS_LIST;
+
+    private OrderStatus getNextOrderStatus(Order order) {
+        List<String> orderStatusArray = ProjectConstants.ORDER_STATUS_LIST;
         int index = orderStatusArray.indexOf(order.getOrderStatus().getStatus());
-        log.info("index of current order status: {}",index);
-        if(index==-1){
+        log.info("index of current order status: {}", index);
+        if (index == -1) {
             throw new CustomException(
                     new ApiExceptionResponse(
                             exceptionMessageAccessor.getMessage(null,
@@ -230,7 +234,7 @@ public class OrderService {
                     )
             );
         }
-        if(index==orderStatusArray.size()-1){
+        if (index == orderStatusArray.size() - 1) {
             throw new CustomException(
                     new ApiExceptionResponse(
                             exceptionMessageAccessor.getMessage(null,
@@ -239,7 +243,7 @@ public class OrderService {
                     )
             );
         }
-        log.info("fetched next order status: {}", orderStatusArray.get(index+1));
-        return orderStatusService.getOrderStatusByStatus(orderStatusArray.get(index+1));
+        log.info("fetched next order status: {}", orderStatusArray.get(index + 1));
+        return orderStatusService.getOrderStatusByStatus(orderStatusArray.get(index + 1));
     }
 }

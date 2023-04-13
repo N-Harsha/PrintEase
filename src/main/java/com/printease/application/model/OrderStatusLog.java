@@ -18,5 +18,6 @@ public class OrderStatusLog {
     @OneToOne
     private OrderStatus orderStatus;
     private LocalDateTime updatedOn;
+    private String updatedBy;
     private String comment;
 }
