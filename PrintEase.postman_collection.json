@@ -289,7 +289,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTE0ODM4OSwiaWF0IjoxNjgxMTQ3Nzg5fQ.sSu7IfUeOA6m8hiorwvPF3k5wuMDFh8W2fQjrw40J_s",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTM0MDQ1MiwiaWF0IjoxNjgxMzMzMjUyfQ.o6i-6KW4RvPGC8-je3c_a0bCosqGtuHLvji8ig3ZmiI",
 							"type": "string"
 						}
 					]
@@ -404,7 +404,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTE0ODM4OSwiaWF0IjoxNjgxMTQ3Nzg5fQ.sSu7IfUeOA6m8hiorwvPF3k5wuMDFh8W2fQjrw40J_s",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTM0MDQ1MiwiaWF0IjoxNjgxMzMzMjUyfQ.o6i-6KW4RvPGC8-je3c_a0bCosqGtuHLvji8ig3ZmiI",
 							"type": "string"
 						}
 					]
@@ -521,7 +521,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTIxMDcyMSwiaWF0IjoxNjgxMjEwMTIxfQ.oqV0a9zK4IU8mWokk2oXZLMIyfFGwydpWx94_KrjBow",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lM0BleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTM0NTYxOCwiaWF0IjoxNjgxMzM4NDE4fQ.hAXwMSB8eHyDAnbY99cLIvhiRkg8b5oHbW5DJdubuAU",
 							"type": "string"
 						}
 					]
@@ -648,7 +648,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTIxMDcyMSwiaWF0IjoxNjgxMjEwMTIxfQ.oqV0a9zK4IU8mWokk2oXZLMIyfFGwydpWx94_KrjBow",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lM0BleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTM0NTYxOCwiaWF0IjoxNjgxMzM4NDE4fQ.hAXwMSB8eHyDAnbY99cLIvhiRkg8b5oHbW5DJdubuAU",
 							"type": "string"
 						}
 					]
@@ -657,7 +657,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"id\": null,\r\n        \"orientation\": {\r\n            \"id\": 1,\r\n            \"orientation\": \"Portrait\"\r\n        },\r\n        \"paperSize\": {\r\n            \"id\": 4,\r\n            \"size\": \"A4\"\r\n        },\r\n        \"paperType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Glossy\"\r\n        },\r\n        \"printSide\": {\r\n            \"id\": 1,\r\n            \"printSideType\": \"Single\"\r\n        },\r\n        \"printType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Black and White\"\r\n        },\r\n        \"bindingType\": null,\r\n        \"price\": 10.2\r\n}",
+					"raw": "{\r\n        \"id\": null,\r\n        \"orientation\": {\r\n            \"id\": 1,\r\n            \"orientation\": \"Portrait\"\r\n        },\r\n        \"paperSize\": {\r\n            \"id\":4,\r\n            \"size\": \"A3\"\r\n        },\r\n        \"paperType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Glossy\"\r\n        },\r\n        \"printSide\": {\r\n            \"id\": 2,\r\n            \"printSideType\": \"Double\"\r\n        },\r\n        \"printType\": {\r\n            \"id\": 2,\r\n            \"type\": \"Black and White\"\r\n        },\r\n        \"bindingType\": null,\r\n        \"price\": 7.3\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -782,8 +782,1147 @@
 					],
 					"cookie": [],
 					"body": "associated service created successfully!"
+				},
+				{
+					"name": "error response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": null,\r\n        \"orientation\": {\r\n            \"id\": 1,\r\n            \"orientation\": \"Portrait\"\r\n        },\r\n        \"paperSize\": {\r\n            \"id\": 4,\r\n            \"size\": \"A4\"\r\n        },\r\n        \"paperType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Glossy\"\r\n        },\r\n        \"printSide\": {\r\n            \"id\": 1,\r\n            \"printSideType\": \"Single\"\r\n        },\r\n        \"printType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Black and White\"\r\n        },\r\n        \"bindingType\": null,\r\n        \"price\": 10.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/associatedServices?printServiceId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"associatedServices"
+							],
+							"query": [
+								{
+									"key": "printServiceId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 17:01:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"adding associated service failed, because it already exists!\",\n    \"status\": \"BAD_REQUEST\",\n    \"time\": \"2023-04-11T22:31:06.199374\"\n}"
 				}
 			]
+		},
+		{
+			"name": "editing the associated service",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTMyNDE3OCwiaWF0IjoxNjgxMzIzNTc4fQ.nPpeL8eSwRe1iPgQjSBp-uUTP8K5Gg3svCgBtYZSH4c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 1,\r\n        \"orientation\": {\r\n            \"id\": 1,\r\n            \"orientation\": \"Portrait\"\r\n        },\r\n        \"paperSize\": {\r\n            \"id\": 4,\r\n            \"size\": \"A4\"\r\n        },\r\n        \"paperType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Glossy\"\r\n        },\r\n        \"printSide\": {\r\n            \"id\": 1,\r\n            \"printSideType\": \"Single\"\r\n        },\r\n        \"printType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Black and White\"\r\n        },\r\n        \"bindingType\": null,\r\n        \"price\": 10.95\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/associatedServices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"associatedServices"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "editing the associated service",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"orientation\": {\r\n            \"id\": 1,\r\n            \"orientation\": \"Portrait\"\r\n        },\r\n        \"paperSize\": {\r\n            \"id\": 4,\r\n            \"size\": \"A4\"\r\n        },\r\n        \"paperType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Glossy\"\r\n        },\r\n        \"printSide\": {\r\n            \"id\": 1,\r\n            \"printSideType\": \"Single\"\r\n        },\r\n        \"printType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Black and White\"\r\n        },\r\n        \"bindingType\": null,\r\n        \"price\": 10.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/associatedServices/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"associatedServices",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 17:07:07 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "associated service updated successfully!"
+				},
+				{
+					"name": "error response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"orientation\": {\r\n            \"id\": 1,\r\n            \"orientation\": \"Portrait\"\r\n        },\r\n        \"paperSize\": {\r\n            \"id\": 4,\r\n            \"size\": \"A4\"\r\n        },\r\n        \"paperType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Glossy\"\r\n        },\r\n        \"printSide\": {\r\n            \"id\": 1,\r\n            \"printSideType\": \"Single\"\r\n        },\r\n        \"printType\": {\r\n            \"id\": 1,\r\n            \"type\": \"Black and White\"\r\n        },\r\n        \"bindingType\": null,\r\n        \"price\": 10.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/associatedServices/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"associatedServices",
+								"2"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 17:12:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The associated service was not found!\",\n    \"status\": \"NOT_FOUND\",\n    \"time\": \"2023-04-11T22:42:10.8375559\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delete associated service",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMkBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX1NFUlZJQ0VfUFJPVklERVIiLCJpc3MiOiJ3d3cucHJpbnRlYXNlLmNvbSIsImV4cCI6MTY4MTMyNDE3OCwiaWF0IjoxNjgxMzIzNTc4fQ.nPpeL8eSwRe1iPgQjSBp-uUTP8K5Gg3svCgBtYZSH4c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/associatedServices/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"associatedServices",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "error response",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/associatedServices/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"associatedServices",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 17:13:28 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The associated service was not found!\",\n    \"status\": \"NOT_FOUND\",\n    \"time\": \"2023-04-11T22:43:28.2437162\"\n}"
+				},
+				{
+					"name": "delete associated service",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/associatedServices/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"associatedServices",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Apr 2023 17:13:58 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "associated service deleted successfully!"
+				}
+			]
+		},
+		{
+			"name": "Create Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMUBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX0NVU1RPTUVSIiwiaXNzIjoid3d3LnByaW50ZWFzZS5jb20iLCJleHAiOjE2ODEzNDI4MzEsImlhdCI6MTY4MTMzNTYzMX0.i6g7BTq-gFBtD2Y_YEDGsq2sIa1MuLDwHxABX7udTEA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/harsh/OneDrive/Documents/class.pdf"
+						},
+						{
+							"key": "associatedServiceId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "this is a test comment",
+							"type": "text"
+						},
+						{
+							"key": "dueDate",
+							"value": "2023-05-02T12:30:00",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "file",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Order",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/harsh/OneDrive/Documents/class.pdf"
+								},
+								{
+									"key": "associatedServiceId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "this is a test comment",
+									"type": "text"
+								},
+								{
+									"key": "dueDate",
+									"value": "2023-05-02T12:30:00",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 12 Apr 2023 20:01:38 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "order created successfully!"
+				},
+				{
+					"name": "associated service not found exception",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/harsh/OneDrive/Documents/class.pdf"
+								},
+								{
+									"key": "associatedServiceId",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "this is a test comment",
+									"type": "text"
+								},
+								{
+									"key": "dueDate",
+									"value": "2023-05-02T12:30:00",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 12 Apr 2023 20:02:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The associated service was not found!\",\n    \"status\": \"NOT_FOUND\",\n    \"time\": \"2023-04-13T01:32:46.9042088\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMUBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX0NVU1RPTUVSIiwiaXNzIjoid3d3LnByaW50ZWFzZS5jb20iLCJleHAiOjE2ODEzNDI4MzEsImlhdCI6MTY4MTMzNTYzMX0.i6g7BTq-gFBtD2Y_YEDGsq2sIa1MuLDwHxABX7udTEA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Orders",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Apr 2023 08:01:57 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"associatedService\": {\n            \"id\": 1,\n            \"orientation\": {\n                \"id\": 1,\n                \"orientation\": \"Portrait\"\n            },\n            \"paperSize\": {\n                \"id\": 4,\n                \"size\": \"A4\"\n            },\n            \"paperType\": {\n                \"id\": 1,\n                \"type\": \"Glossy\"\n            },\n            \"printSide\": {\n                \"id\": 2,\n                \"printSideType\": \"Double\"\n            },\n            \"printType\": {\n                \"id\": 2,\n                \"type\": \"Color\"\n            },\n            \"bindingType\": null,\n            \"price\": 7.3\n        },\n        \"serviceName\": \"Document Printing\",\n        \"comment\": \"this is a test comment\",\n        \"dueDate\": \"2023-05-02T12:30:00\",\n        \"createdOn\": \"2023-04-13T13:31:11.496083\",\n        \"orderStatus\": \"In Progress\",\n        \"quantity\": 2,\n        \"price\": 14.6,\n        \"fileDownloadableUrl\": \"http://localhost:8080/api/v1/files/download/1\",\n        \"orderStatusLogList\": [\n            {\n                \"id\": 1,\n                \"orderStatus\": {\n                    \"id\": 2,\n                    \"status\": \"Accepted\"\n                },\n                \"updatedOn\": \"2023-04-13T13:31:34.937619\",\n                \"comment\": \"this is test comment\"\n            },\n            {\n                \"id\": 2,\n                \"orderStatus\": {\n                    \"id\": 4,\n                    \"status\": \"In Progress\"\n                },\n                \"updatedOn\": \"2023-04-13T13:31:50.112547\",\n                \"comment\": \"this is test comment\"\n            }\n        ],\n        \"customerName\": \"John Doe\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Download file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMUBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX0NVU1RPTUVSIiwiaXNzIjoid3d3LnByaW50ZWFzZS5jb20iLCJleHAiOjE2ODEzNDI4MzEsImlhdCI6MTY4MTMzNTYzMX0.i6g7BTq-gFBtD2Y_YEDGsq2sIa1MuLDwHxABX7udTEA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/files/download/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"files",
+						"download",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Promote Order Status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lMUBleGFtcGxlLmNvbSIsInJvbGUiOiJST0xFX0NVU1RPTUVSIiwiaXNzIjoid3d3LnByaW50ZWFzZS5jb20iLCJleHAiOjE2ODEzNTIzNDgsImlhdCI6MTY4MTM0NTE0OH0.v6EzaS631uOn_exJExtYNLH_giUk4NnTH6H2Cpvm1t8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"this is test comment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders/1/promote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"1",
+						"promote"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "promote",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"this is test comment\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/orders/1/promote",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"1",
+								"promote"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Apr 2023 08:01:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Order status updated successfully to In Progress status!"
+				}
+			]
+		},
+		{
+			"name": "Cancel Order Status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders/1/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"1",
+						"cancel"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
