@@ -5,16 +5,21 @@ import com.printease.application.exceptions.CustomException;
 import com.printease.application.model.*;
 import com.printease.application.repository.AssociatedServiceRepository;
 import com.printease.application.security.dto.AssociatedServiceDto;
+import com.printease.application.security.dto.RecommendAssociatedServiceRequestDto;
+import com.printease.application.security.dto.RecommendAssociatedServiceResponseDto;
 import com.printease.application.security.mapper.AssociatedServiceMapper;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.GeneralMessageAccessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.awt.print.Pageable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +33,7 @@ public class ServiceOfAssociatedService {
     private final AssociatedServiceRepository associatedServiceRepository;
     private final ServiceOfServiceProvider serviceOfServiceProvider;
     private final ServiceOfPrintService serviceOfPrintService;
+    private final CustomerService customerService;
     private final ExceptionMessageAccessor exceptionMessageAccessor;
     private final GeneralMessageAccessor generalMessageAccessor;
     private final String ASSOCIATED_SERVICE_NOT_FOUND = "associated_service_not_found";
@@ -226,5 +232,24 @@ public class ServiceOfAssociatedService {
     public AssociatedService findAssociatedServiceById(Long id){
         return associatedServiceRepository.findById(id).orElseThrow(() -> new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(
                 null, ASSOCIATED_SERVICE_NOT_FOUND), HttpStatus.NOT_FOUND, LocalDateTime.now())));
+    }
+
+    @Transactional
+    public ResponseEntity<List<RecommendAssociatedServiceResponseDto>> recommendAssociatedService(String email, RecommendAssociatedServiceRequestDto requestDto) {
+        Customer customer = customerService.findCustomerByUserEmail(email);
+        log.info("fetched customer with id {}", customer.getId());
+        log.info("info of requestDto: printServiceId: {}, orientationId: {}, paperSizeId: {}, paperTypeId: {}, printSideId: {}, printTypeId: {}, bindingTypeId: {}, latitude: {}, longitude: {}",
+                requestDto.getPrintServiceId(), requestDto.getOrientationId(), requestDto.getPaperSizeId(), requestDto.getPaperTypeId(),
+                requestDto.getPrintSideId(), requestDto.getPrintTypeId(), requestDto.getBindingTypeId(), requestDto.getLatitude(), requestDto.getLongitude());
+        List<AssociatedService> possibleAssociatedServices =
+                associatedServiceRepository.findAllByAssociatedServiceConfig(requestDto.getPrintServiceId(),
+                        requestDto.getOrientationId(),requestDto.getPaperSizeId(), requestDto.getPaperTypeId(),
+                        requestDto.getPrintSideId(), requestDto.getPrintTypeId(), requestDto.getBindingTypeId(),
+                        requestDto.getLatitude(), requestDto.getLongitude());
+        log.info("fetched possible associated services");
+        return ResponseEntity.ok(
+                possibleAssociatedServices.stream().map(AssociatedServiceMapper.INSTANCE::convertToRecommendAssociatedServiceResponseDto)
+                        .collect(Collectors.toList())
+        );
     }
 }

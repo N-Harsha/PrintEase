@@ -2,6 +2,8 @@ package com.printease.application.controller;
 
 import com.printease.application.model.AssociatedService;
 import com.printease.application.security.dto.AssociatedServiceDto;
+import com.printease.application.security.dto.RecommendAssociatedServiceRequestDto;
+import com.printease.application.security.dto.RecommendAssociatedServiceResponseDto;
 import com.printease.application.service.ServiceOfAssociatedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +41,11 @@ public class AssociatedServiceController {
     @PreAuthorize("hasRole('ROLE_SERVICE_PROVIDER')")
     public ResponseEntity<String> deleteAssociatedService(Principal principal, @PathVariable Long associatedServiceId){
         return serviceOfAssociatedService.deleteAssociatedService(principal.getName(), associatedServiceId);
+    }
+
+    @GetMapping("/recommend")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
+    public ResponseEntity<List<RecommendAssociatedServiceResponseDto>> recommendAssociatedServices(Principal principal, @RequestBody RecommendAssociatedServiceRequestDto requestDto){
+        return serviceOfAssociatedService.recommendAssociatedService(principal.getName(), requestDto);
     }
 }
