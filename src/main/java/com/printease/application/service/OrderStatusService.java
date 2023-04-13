@@ -21,7 +21,7 @@ public class OrderStatusService {
     private final OrderStatusRepository orderStatusRepository;
     ExceptionMessageAccessor exceptionMessageAccessor;
     OrderStatus getOrderStatusByStatus(String status){
-        return orderStatusRepository.findByStatus(ProjectConstants.PENDING_ORDER_STATUS).orElseThrow(()->
+        return orderStatusRepository.findByStatus(status).orElseThrow(()->
                 new CustomException(new ApiExceptionResponse(
                         exceptionMessageAccessor.getMessage(null,
                                 ORDER_STATUS_NOT_FOUND,ProjectConstants.PENDING_ORDER_STATUS), HttpStatus.NOT_FOUND, LocalDateTime.now())));

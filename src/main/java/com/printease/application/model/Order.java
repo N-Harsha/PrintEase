@@ -1,9 +1,12 @@
 package com.printease.application.model;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,6 +27,8 @@ public class Order {
     private OrderStatus orderStatus;
     @OneToOne
     private FileDB file;
+    @OneToMany(cascade = CascadeType.ALL)
+    List<OrderStatusLog> orderStatusLogList;
     private LocalDateTime createdOn;
     private LocalDateTime dueDate;
     private String comment;

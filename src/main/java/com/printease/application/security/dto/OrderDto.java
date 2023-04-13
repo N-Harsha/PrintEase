@@ -1,5 +1,6 @@
 package com.printease.application.security.dto;
 
+import com.printease.application.model.OrderStatusLog;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SuperBuilder
 @AllArgsConstructor
@@ -25,4 +27,5 @@ public class OrderDto {
     private Integer quantity;
     private Float price;
     private String fileDownloadableUrl;
+    private List<OrderStatusLog> orderStatusLogList;
 }

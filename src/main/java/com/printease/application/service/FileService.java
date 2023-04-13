@@ -5,6 +5,7 @@ import com.printease.application.exceptions.CustomException;
 import com.printease.application.model.FileDB;
 import com.printease.application.model.Order;
 import com.printease.application.repository.FileRepository;
+import com.printease.application.repository.OrderRepository;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.ProjectConstants;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
@@ -27,8 +27,8 @@ import java.util.zip.InflaterInputStream;
 @RequiredArgsConstructor
 public class FileService {
     private final FileRepository fileRepository;
-    private final OrderService orderService;
     private final ExceptionMessageAccessor exceptionMessageAccessor;
+    private final OrderRepository orderRepository;
 
     public FileDB saveCompressedFileToDatabase(MultipartFile file) throws IOException {
 
@@ -74,11 +74,9 @@ public class FileService {
                 )
         ));
 
-        Order order = orderService.getOrderByFileId(file.getId());
+        Order order = getOrderByFileId(file.getId());
         //future only the service provider can only download the file if the order is the accepted or above stages.
-        if (!order.getCustomer().getEmail().equalsIgnoreCase(email) &&
-                !order.getAssociatedService().getServiceProvider()
-                        .getEmail().equalsIgnoreCase(email)) {
+        if (checkIfOrderIsAssociatedWithUser(order, email)) {
             throw new CustomException(
                     new ApiExceptionResponse(
                             exceptionMessageAccessor.getMessage(null, ProjectConstants.DOWNLOAD_NOT_AUTHORIZED, fileId),
@@ -94,5 +92,15 @@ public class FileService {
         headers.setContentDisposition(ContentDisposition.attachment().filename(file.getName()).build());
 
         return new ResponseEntity<>(fileBytes, headers, HttpStatus.OK);
+    }
+
+    public Order getOrderByFileId(Long id) {
+        log.info("fetched order with file id: {}", id);
+        return orderRepository.findByFileId(id).orElseThrow(() -> new CustomException(new ApiExceptionResponse(exceptionMessageAccessor
+                .getMessage(null, ProjectConstants.ORDER_NOT_FOUND), HttpStatus.NOT_FOUND, LocalDateTime.now())));
+    }
+
+    private boolean checkIfOrderIsAssociatedWithUser(Order order,String email){
+        return !order.getCustomer().getEmail().equalsIgnoreCase(email) && !order.getAssociatedService().getServiceProvider().getEmail().equalsIgnoreCase(email);
     }
 }

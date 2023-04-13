@@ -2,6 +2,7 @@ package com.printease.application.controller;
 
 
 import com.printease.application.security.dto.OrderCreationRequestDto;
+import com.printease.application.security.dto.StatusUpdateDto;
 import com.printease.application.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,21 @@ public class OrderController {
     public ResponseEntity<?> createOrder(Principal principal,
                                          @ModelAttribute OrderCreationRequestDto orderCreationRequestDto){
         return orderService.createOrder(principal.getName(), orderCreationRequestDto);
+    }
+
+    @PutMapping("/{orderId}/cancel")
+    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
+    public ResponseEntity<?> cancelOrder(Principal principal,
+                                         @PathVariable Long orderId,
+                                         @RequestBody StatusUpdateDto statusUpdateDto){
+        return orderService.cancelOrder(principal.getName(), orderId,statusUpdateDto.getComment());
+    }
+    @PutMapping("/{orderId}/promote")
+    @PreAuthorize("hasRole('ROLE_SERVICE_PROVIDER')")
+    public ResponseEntity<?> promoteOrder(Principal principal,
+                                          @PathVariable Long orderId,
+                                          @RequestBody StatusUpdateDto statusUpdateDto){
+        return orderService.promoteOrder(principal.getName(), orderId,statusUpdateDto.getComment());
     }
 
 
