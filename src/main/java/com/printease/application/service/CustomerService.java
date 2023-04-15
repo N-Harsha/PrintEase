@@ -10,18 +10,24 @@ import com.printease.application.repository.CustomerRepository;
 import com.printease.application.repository.UserRepository;
 import com.printease.application.security.dto.RegistrationRequest;
 import com.printease.application.security.dto.RegistrationResponse;
+import com.printease.application.security.dto.ServiceProviderDto;
 import com.printease.application.security.dto.ServiceProviderRegistrationRequest;
 import com.printease.application.security.mapper.CustomerMapper;
+import com.printease.application.security.mapper.ServiceProviderRequestMapper;
 import com.printease.application.security.mapper.UserMapper;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.GeneralMessageAccessor;
+import com.printease.application.utils.ProjectConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -37,13 +43,15 @@ public class CustomerService {
 
     private final GeneralMessageAccessor generalMessageAccessor;
 
-    private  final ExceptionMessageAccessor exceptionMessageAccessor;
+    private final ExceptionMessageAccessor exceptionMessageAccessor;
 
     private final CustomerRepository customerRepository;
 
     private final UserRepository userRepository;
 
-    public RegistrationResponse registration( RegistrationRequest registrationRequest) {
+    private final ServiceOfServiceProvider serviceOfServiceProvider;
+
+    public RegistrationResponse registration(RegistrationRequest registrationRequest) {
 
         final Customer customer = CustomerMapper.INSTANCE.convertToCustomer(registrationRequest);
         customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
@@ -71,4 +79,41 @@ public class CustomerService {
                 HttpStatus.BAD_REQUEST, LocalDateTime.now())));
     }
 
+    public ResponseEntity<List<ServiceProviderDto>> getFavoriteServiceProvider(String email) {
+        return ResponseEntity.ok(findCustomerByUserEmail(email).getFavouriteServiceProviders().stream()
+                .map(ServiceProviderRequestMapper.INSTANCE::convertToServiceProviderDto)
+                .collect(Collectors.toList()));
+    }
+
+    public ResponseEntity<String> addFavoriteServiceProvider(String name, Long serviceProviderId) {
+        Customer customer = findCustomerByUserEmail(name);
+        log.info("fetched customer with id : {}", customer.getId());
+        ServiceProvider serviceProvider = serviceOfServiceProvider.findById(serviceProviderId);
+        log.info("fetched service provider with id : {}", serviceProvider.getId());
+        customer.getFavouriteServiceProviders().add(serviceProvider);
+        log.info("added service provider with id : {} to customer with id : {}", serviceProvider.getId(), customer.getId());
+        if(customer.getFavouriteServiceProviders().contains(serviceProvider)){
+            log.info("service provider with id : {} is already added to customer with id : {}", serviceProvider.getId(), customer.getId());
+            throw new CustomException(new ApiExceptionResponse(
+                    exceptionMessageAccessor.getMessage(null, ProjectConstants.FAVOURITE_SERVICE_PROVIDER_ALREADY_ADDED,
+                            serviceProvider.getId(), customer.getId()),
+                    HttpStatus.BAD_REQUEST, LocalDateTime.now()));
+
+        }
+        customerRepository.save(customer);
+        return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.FAVOURITE_SERVICE_PROVIDER_ADDED,
+                serviceProvider.getId(), customer.getId()));
+    }
+
+
+    public ResponseEntity<String> deleteFavoriteServiceProvider(String email, Long serviceProviderId) {
+        Customer customer = findCustomerByUserEmail(email);
+        log.info("fetched customer with id : {}", customer.getId());
+        ServiceProvider serviceProvider = serviceOfServiceProvider.findById(serviceProviderId);
+        log.info("fetched service provider with id : {}", serviceProvider.getId());
+        customer.getFavouriteServiceProviders().remove(serviceProvider);
+        log.info("removed service provider with id : {} from customer with id : {}", serviceProvider.getId(), customer.getId());
+        return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.FAVOURITE_SERVICE_PROVIDER_REMOVED,
+                serviceProvider.getId(), customer.getId()));
+    }
 }

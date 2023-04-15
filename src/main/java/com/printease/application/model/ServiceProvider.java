@@ -24,11 +24,11 @@ public class ServiceProvider extends User{
     @Column(nullable = false, length = 15)
     private String gstIn;
 
-    @OneToMany(mappedBy = "serviceProvider")
+    @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
     private List<AssociatedService> associatedServices;
 
-    @OneToMany(mappedBy = "serviceProvider")
-    private List<Rating> ratings;
+//    @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
+//    private List<Rating> ratings;
 
 
     @OneToOne(cascade = CascadeType.ALL)

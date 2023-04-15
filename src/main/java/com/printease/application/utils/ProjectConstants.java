@@ -46,11 +46,13 @@ public final class ProjectConstants {
     public static final String ORDER_CANNOT_BE_CANCELLED = "order_cannot_be_cancelled";
     public static final String ORDER_STATUS_CANNOT_BE_UPDATED = "order_status_cannot_be_updated";
     public static final String ORDER_STATUS_IS_ALREADY_COMPLETED = "order_status_is_already_completed";
+    public static final String FAVOURITE_SERVICE_PROVIDER_ALREADY_ADDED = "favorite_already_added";
 
     //success message constants
     public static final String ORDER_CREATED_SUCCESSFULLY = "order_created_successfully";
     public static final String ORDER_STATUS_UPDATED = "order_status_updated";
-
+    public static final String FAVOURITE_SERVICE_PROVIDER_ADDED = "favorite_added_successfully";
+    public static final String FAVOURITE_SERVICE_PROVIDER_REMOVED = "favorite_removed_successfully";
 
     private ProjectConstants() {
 

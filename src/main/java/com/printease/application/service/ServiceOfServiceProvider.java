@@ -61,4 +61,9 @@ public class ServiceOfServiceProvider {
                 HttpStatus.BAD_REQUEST, LocalDateTime.now())));
     }
 
+    public ServiceProvider findById(Long serviceProviderId) {
+        return serviceProviderRepository.findById(serviceProviderId).orElseThrow(() -> new CustomException(new ApiExceptionResponse(
+                exceptionMessageAccessor.getMessage(null, SERVICE_PROVIDER_NOT_FOUND, serviceProviderId),
+                HttpStatus.BAD_REQUEST, LocalDateTime.now())));
+    }
 }

@@ -5,6 +5,7 @@ import com.printease.application.exceptions.CustomException;
 import com.printease.application.model.PrintService;
 import com.printease.application.repository.PrintServiceRepository;
 import com.printease.application.security.dto.PrintServiceDto;
+import com.printease.application.security.dto.SpecificPrintServiceDto;
 import com.printease.application.security.mapper.PrintServiceMapper;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,14 @@ public class ServiceOfPrintService {
     }
 
     //this method is only needed by the service provider
-    public PrintService getService(Long id) {
+    public SpecificPrintServiceDto getSpecificService(Long id) {
+        PrintService printService = printServiceRepository.findById(id)
+                .orElseThrow(() -> new CustomException(new ApiExceptionResponse(exceptionMessageAccessor
+                        .getMessage(null, SERVICE_NOT_FOUND, id), HttpStatus.BAD_REQUEST, LocalDateTime.now())));
+        log.info("fetched service with id {}", id);
+        return PrintServiceMapper.INSTANCE.convertToSpecificPrintServiceDto(printService);
+    }
+    public PrintService getService(Long id){
         PrintService printService = printServiceRepository.findById(id)
                 .orElseThrow(() -> new CustomException(new ApiExceptionResponse(exceptionMessageAccessor
                         .getMessage(null, SERVICE_NOT_FOUND, id), HttpStatus.BAD_REQUEST, LocalDateTime.now())));

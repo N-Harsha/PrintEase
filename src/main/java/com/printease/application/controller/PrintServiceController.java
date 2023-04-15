@@ -2,6 +2,7 @@ package com.printease.application.controller;
 
 import com.printease.application.model.PrintService;
 import com.printease.application.security.dto.PrintServiceDto;
+import com.printease.application.security.dto.SpecificPrintServiceDto;
 import com.printease.application.service.ServiceOfPrintService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class PrintServiceController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
-    public ResponseEntity<PrintService> getService(@PathVariable Long id, Principal principal) {
-        return ResponseEntity.ok(serviceOfPrintService.getService(id));
+    public ResponseEntity<SpecificPrintServiceDto> getService(@PathVariable Long id, Principal principal) {
+        return ResponseEntity.ok(serviceOfPrintService.getSpecificService(id));
     }
 }

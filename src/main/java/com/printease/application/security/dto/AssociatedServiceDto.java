@@ -1,9 +1,7 @@
 package com.printease.application.security.dto;
 
-import com.printease.application.model.*;
 import lombok.*;
 
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Setter
@@ -16,17 +14,17 @@ public class AssociatedServiceDto {
 
     private Long id;
 
-    private Orientation  orientation;
+    private OrientationDto  orientation;
 
-    private PaperSize paperSize;
+    private PaperSizeDto paperSize;
 
-    private PaperType paperType;
+    private PaperTypeDto paperType;
 
-    private PrintSide printSide;
+    private PrintSideDto printSide;
 
-    private PrintType printType;
+    private PrintTypeDto printType;
 
-    private BindingType bindingType;
+    private BindingTypeDto bindingType;
 
     @NotNull
     private Float price;
