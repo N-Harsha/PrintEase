@@ -98,6 +98,29 @@ public class OrderService {
         return ResponseEntity.ok(orders);
     }
 
+    public ResponseEntity<?> getOrderByIdResponseEntity(String email, Long id) {
+        User user = userService.findByEmail(email);
+        log.info("fetched user with email: {}", email);
+        Order order = getOrderById(id);
+        log.info("fetched order with id: {}", id);
+        if (checkIfOrderIsAssociatedWithUser(order, email)) {
+            throw new CustomException(
+                    new ApiExceptionResponse(
+                            exceptionMessageAccessor.getMessage(null,
+                                    ProjectConstants.USER_NOT_AUTHORIZED_FOR_STATUS_UPDATE),
+                            HttpStatus.FORBIDDEN, LocalDateTime.now()));
+        }
+        if (user.getUserRole().getRole().equalsIgnoreCase(ProjectConstants.ROLE_CUSTOMER)) {
+            return ResponseEntity.ok(OrderMapper.INSTANCE.convertToOrderDtoCustomer(order));
+        } else if (user.getUserRole().getRole().equalsIgnoreCase(ProjectConstants.ROLE_SERVICE_PROVIDER)) {
+            return ResponseEntity.ok(OrderMapper.INSTANCE.convertToOrderDtoServiceProvider(order));
+        } else {
+            log.error("Invalid user role");
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor
+                    .getMessage(null, ProjectConstants.INVALID_USER_ROLE), HttpStatus.FORBIDDEN, LocalDateTime.now()));
+        }
+    }
+
     private List<OrderDtoCustomer> getAllOrdersOfCustomer(Customer customer) {
         log.info("fetched all orders of customer with id: {}", customer.getId());
         return orderRepository.findAllByCustomer(customer)

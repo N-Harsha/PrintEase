@@ -1,6 +1,8 @@
 package com.printease.application.security.mapper;
 
+import com.printease.application.model.AssociatedService;
 import com.printease.application.model.Order;
+import com.printease.application.security.dto.AssociatedServiceDto;
 import com.printease.application.security.dto.OrderDtoCustomer;
 import com.printease.application.security.dto.OrderDtoServiceProvider;
 import com.printease.application.utils.ProjectConstants;
@@ -18,17 +20,23 @@ public interface OrderMapper {
     @Mapping(target = "orderStatus", source = "orderStatus.status")
     @Mapping(target = "serviceName", source = "associatedService.service.serviceName")
     @Mapping(target = "fileDownloadableUrl", source = "order", qualifiedByName = "fileDownloadableUrlGenerator")
+    @Mapping(target = "associatedService", source = "associatedService", qualifiedByName = "convertToAssociatedServiceDto")
     OrderDtoCustomer convertToOrderDtoCustomer(Order order);
 
     @Mapping(target = "customerName", source = "customer.name")
     @Mapping(target = "orderStatus", source = "orderStatus.status")
     @Mapping(target = "serviceName", source = "associatedService.service.serviceName")
     @Mapping(target = "fileDownloadableUrl", source = "order", qualifiedByName = "fileDownloadableUrlGenerator")
+    @Mapping(target = "associatedService", source = "associatedService", qualifiedByName = "convertToAssociatedServiceDto")
     OrderDtoServiceProvider convertToOrderDtoServiceProvider(Order order);
 
     @Named("fileDownloadableUrlGenerator")
     default String fileDownloadableUrlGenerator(Order order) {
         return ProjectConstants.BASE_URL + "/api/v1/files/download/" + order.getFile().getId();
+    }
+    @Named("convertToAssociatedServiceDto")
+    default AssociatedServiceDto convertToAssociatedServiceDto(AssociatedService associatedService){
+        return AssociatedServiceMapper.INSTANCE.convertToAssociatedServiceDto(associatedService);
     }
 
 }

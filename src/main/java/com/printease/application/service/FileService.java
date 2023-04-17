@@ -90,6 +90,7 @@ public class FileService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.valueOf(file.getType()));
         headers.setContentDisposition(ContentDisposition.attachment().filename(file.getName()).build());
+        headers.setContentLength(fileBytes.length);
 
         return new ResponseEntity<>(fileBytes, headers, HttpStatus.OK);
     }

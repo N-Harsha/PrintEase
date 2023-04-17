@@ -23,6 +23,12 @@ public class OrderController {
         return orderService.getAllOrders(principal.getName());
     }
 
+    @GetMapping("/{orderId}")
+    @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
+    public ResponseEntity<?> getOrderById(Principal principal, @PathVariable Long orderId){
+        return orderService.getOrderByIdResponseEntity(principal.getName(), orderId);
+    }
+
     @PostMapping
     @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<?> createOrder(Principal principal,
