@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderRepository extends CrudRepository<Order, Long> {
-    List<Order> findAllByCustomer(Customer customer);
+    List<Order> findAllByCustomerOrderByCreatedOnDesc(Customer customer);
 
-    @Query("SELECT o from Order o WHERE o.associatedService.serviceProvider.id = ?1")
+    @Query("SELECT o from Order o WHERE o.associatedService.serviceProvider.id = ?1 order by o.createdOn desc ")
     List<Order> findAllByServiceProviderId(Long serviceProviderId);
 
     @Query("SELECT o FROM Order o WHERE o.file.id = ?1")

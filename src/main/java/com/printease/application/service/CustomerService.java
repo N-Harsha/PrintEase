@@ -5,16 +5,11 @@ import com.printease.application.exceptions.CustomException;
 import com.printease.application.model.Customer;
 import com.printease.application.model.ServiceProvider;
 import com.printease.application.model.User;
-import com.printease.application.model.UserRole;
 import com.printease.application.repository.CustomerRepository;
 import com.printease.application.repository.UserRepository;
-import com.printease.application.security.dto.RegistrationRequest;
-import com.printease.application.security.dto.RegistrationResponse;
-import com.printease.application.security.dto.ServiceProviderDto;
-import com.printease.application.security.dto.ServiceProviderRegistrationRequest;
+import com.printease.application.security.dto.*;
 import com.printease.application.security.mapper.CustomerMapper;
 import com.printease.application.security.mapper.ServiceProviderRequestMapper;
-import com.printease.application.security.mapper.UserMapper;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.GeneralMessageAccessor;
 import com.printease.application.utils.ProjectConstants;
@@ -85,7 +80,7 @@ public class CustomerService {
                 .collect(Collectors.toList()));
     }
 
-    public ResponseEntity<String> addFavoriteServiceProvider(String name, Long serviceProviderId) {
+    public ResponseEntity<MessageWrapperDto> addFavoriteServiceProvider(String name, Long serviceProviderId) {
         Customer customer = findCustomerByUserEmail(name);
         log.info("fetched customer with id : {}", customer.getId());
         ServiceProvider serviceProvider = serviceOfServiceProvider.findById(serviceProviderId);
@@ -101,19 +96,19 @@ public class CustomerService {
 
         }
         customerRepository.save(customer);
-        return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.FAVOURITE_SERVICE_PROVIDER_ADDED,
-                serviceProvider.getId(), customer.getId()));
+        return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null, ProjectConstants.FAVOURITE_SERVICE_PROVIDER_ADDED,
+                serviceProvider.getId(), customer.getId())));
     }
 
 
-    public ResponseEntity<String> deleteFavoriteServiceProvider(String email, Long serviceProviderId) {
+    public ResponseEntity<MessageWrapperDto> deleteFavoriteServiceProvider(String email, Long serviceProviderId) {
         Customer customer = findCustomerByUserEmail(email);
         log.info("fetched customer with id : {}", customer.getId());
         ServiceProvider serviceProvider = serviceOfServiceProvider.findById(serviceProviderId);
         log.info("fetched service provider with id : {}", serviceProvider.getId());
         customer.getFavouriteServiceProviders().remove(serviceProvider);
         log.info("removed service provider with id : {} from customer with id : {}", serviceProvider.getId(), customer.getId());
-        return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.FAVOURITE_SERVICE_PROVIDER_REMOVED,
-                serviceProvider.getId(), customer.getId()));
+        return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null, ProjectConstants.FAVOURITE_SERVICE_PROVIDER_REMOVED,
+                serviceProvider.getId(), customer.getId())));
     }
 }

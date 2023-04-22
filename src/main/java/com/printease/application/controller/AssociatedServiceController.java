@@ -2,6 +2,7 @@ package com.printease.application.controller;
 
 import com.printease.application.model.AssociatedService;
 import com.printease.application.security.dto.AssociatedServiceDto;
+import com.printease.application.security.dto.MessageWrapperDto;
 import com.printease.application.security.dto.RecommendAssociatedServiceRequestDto;
 import com.printease.application.security.dto.RecommendAssociatedServiceResponseDto;
 import com.printease.application.service.ServiceOfAssociatedService;
@@ -21,7 +22,7 @@ public class AssociatedServiceController {
     private final ServiceOfAssociatedService serviceOfAssociatedService;
     @PostMapping
     @PreAuthorize("hasRole('ROLE_SERVICE_PROVIDER')")
-    public ResponseEntity<String> addAssociatedService(Principal principal,@Valid @RequestBody AssociatedServiceDto associatedServiceDto, @RequestParam Long printServiceId){
+    public ResponseEntity<MessageWrapperDto> addAssociatedService(Principal principal, @Valid @RequestBody AssociatedServiceDto associatedServiceDto, @RequestParam Long printServiceId){
         return serviceOfAssociatedService.addAssociatedService(principal.getName(), associatedServiceDto,printServiceId);
     }
     @GetMapping
@@ -33,13 +34,13 @@ public class AssociatedServiceController {
 
     @PutMapping
     @PreAuthorize("hasRole('ROLE_SERVICE_PROVIDER')")
-    public ResponseEntity<String> updateAssociatedService(Principal principal, @Valid @RequestBody AssociatedServiceDto associatedServiceDto){
+    public ResponseEntity<MessageWrapperDto> updateAssociatedService(Principal principal, @Valid @RequestBody AssociatedServiceDto associatedServiceDto){
         return serviceOfAssociatedService.updateAssociatedService(principal.getName(), associatedServiceDto);
     }
 
     @DeleteMapping("/{associatedServiceId}")
     @PreAuthorize("hasRole('ROLE_SERVICE_PROVIDER')")
-    public ResponseEntity<String> deleteAssociatedService(Principal principal, @PathVariable Long associatedServiceId){
+    public ResponseEntity<MessageWrapperDto> deleteAssociatedService(Principal principal, @PathVariable Long associatedServiceId){
         return serviceOfAssociatedService.deleteAssociatedService(principal.getName(), associatedServiceId);
     }
 

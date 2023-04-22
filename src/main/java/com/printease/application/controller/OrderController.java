@@ -20,6 +20,7 @@ public class OrderController {
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
     public ResponseEntity<?> getAllOrders(Principal principal){
+        // TODO: 18-04-2023  update this method to return only the required fields.
         return orderService.getAllOrders(principal.getName());
     }
 

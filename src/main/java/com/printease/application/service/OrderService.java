@@ -4,6 +4,7 @@ import com.printease.application.exceptions.ApiExceptionResponse;
 import com.printease.application.exceptions.CustomException;
 import com.printease.application.model.*;
 import com.printease.application.repository.OrderRepository;
+import com.printease.application.security.dto.MessageWrapperDto;
 import com.printease.application.security.dto.OrderCreationRequestDto;
 import com.printease.application.security.dto.OrderDtoCustomer;
 import com.printease.application.security.dto.OrderDtoServiceProvider;
@@ -75,7 +76,8 @@ public class OrderService {
                 .build();
         orderRepository.save(order);
         log.info("Order created successfully");
-        return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.ORDER_CREATED_SUCCESSFULLY));
+        return ResponseEntity.ok(new MessageWrapperDto((generalMessageAccessor.getMessage(null,
+                ProjectConstants.ORDER_CREATED_SUCCESSFULLY))));
     }
 
     public ResponseEntity<List<?>> getAllOrders(String email) {
@@ -123,7 +125,7 @@ public class OrderService {
 
     private List<OrderDtoCustomer> getAllOrdersOfCustomer(Customer customer) {
         log.info("fetched all orders of customer with id: {}", customer.getId());
-        return orderRepository.findAllByCustomer(customer)
+        return orderRepository.findAllByCustomerOrderByCreatedOnDesc(customer)
                 .stream().map(OrderMapper.INSTANCE::convertToOrderDtoCustomer)
                 .collect(Collectors.toList());
     }
@@ -166,7 +168,8 @@ public class OrderService {
                         .comment(comment)
                         .build());
                 log.info("Order cancelled successfully");
-                return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus()));
+                return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null,
+                        ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus())));
             } else {
                 log.error("Order cannot be cancelled");
                 throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor
@@ -184,7 +187,8 @@ public class OrderService {
                         .updatedOn(LocalDateTime.now())
                         .build());
                 log.info("Order rejected successfully");
-                return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus()));
+                return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null,
+                        ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus())));
             } else {
                 if (order.getOrderStatus().getStatus().equals(ProjectConstants.COMPLETED_ORDER_STATUS)) {
                     log.error("Order cannot be cancelled");
@@ -199,8 +203,8 @@ public class OrderService {
                         .updatedOn(LocalDateTime.now())
                         .build());
                 log.info("Order cancelled successfully");
-                return ResponseEntity.ok(generalMessageAccessor
-                        .getMessage(null, ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus()));
+                return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor
+                        .getMessage(null, ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus())));
             }
 
         } else {
@@ -240,8 +244,8 @@ public class OrderService {
                 .updatedOn(LocalDateTime.now())
                 .build());
         log.info("Order promoted successfully");
-        return ResponseEntity.ok(generalMessageAccessor.getMessage(null,
-                ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus(), order.getOrderStatus().getStatus()));
+        return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null,
+                ProjectConstants.ORDER_STATUS_UPDATED, order.getOrderStatus().getStatus(), order.getOrderStatus().getStatus())));
     }
 
     private OrderStatus getNextOrderStatus(Order order) {

@@ -5,6 +5,7 @@ import com.printease.application.exceptions.CustomException;
 import com.printease.application.model.*;
 import com.printease.application.repository.AssociatedServiceRepository;
 import com.printease.application.security.dto.AssociatedServiceDto;
+import com.printease.application.security.dto.MessageWrapperDto;
 import com.printease.application.security.dto.RecommendAssociatedServiceRequestDto;
 import com.printease.application.security.dto.RecommendAssociatedServiceResponseDto;
 import com.printease.application.security.mapper.AssociatedServiceMapper;
@@ -78,7 +79,7 @@ public class ServiceOfAssociatedService {
         }
     }
     @Transactional
-    public ResponseEntity<String> addAssociatedService(String email, AssociatedServiceDto associatedServiceDto, Long printServiceId) {
+    public ResponseEntity<MessageWrapperDto> addAssociatedService(String email, AssociatedServiceDto associatedServiceDto, Long printServiceId) {
         ServiceProvider serviceProvider = serviceOfServiceProvider.findServiceProviderByUserEmail(email);
         log.info("fetched service provider with id {}", serviceProvider.getId());
         PrintService printService = serviceOfPrintService.getService(printServiceId);
@@ -96,7 +97,8 @@ public class ServiceOfAssociatedService {
         associatedServiceRepository.save(associatedService);
         log.info("generated associated service with id {}", associatedService.getId());
         String ASSOCIATED_SERVICE_CREATED_SUCCESSFULLY = "associated_service_created_successfully";
-        return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ASSOCIATED_SERVICE_CREATED_SUCCESSFULLY));
+        return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null,
+                ASSOCIATED_SERVICE_CREATED_SUCCESSFULLY)));
     }
 
 
@@ -197,7 +199,7 @@ public class ServiceOfAssociatedService {
 
 
     @Transactional
-    public ResponseEntity<String> updateAssociatedService(String email, AssociatedServiceDto associatedServiceDto) {
+    public ResponseEntity<MessageWrapperDto> updateAssociatedService(String email, AssociatedServiceDto associatedServiceDto) {
         ServiceProvider serviceProvider = serviceOfServiceProvider.findServiceProviderByUserEmail(email);
         log.info("fetched service provider with id {}", serviceProvider.getId());
         if (!associatedServiceRepository.existsByIdAndServiceProvider(associatedServiceDto.getId(), serviceProvider))
@@ -211,12 +213,13 @@ public class ServiceOfAssociatedService {
         associatedService.setServiceProvider(serviceProvider);
         associatedServiceRepository.save(associatedService);
         String ASSOCIATED_SERVICE_UPDATED_SUCCESSFULLY = "associated_service_updated_successfully";
-        return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ASSOCIATED_SERVICE_UPDATED_SUCCESSFULLY));
+        return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null,
+                ASSOCIATED_SERVICE_UPDATED_SUCCESSFULLY)));
     }
 
 
     @Transactional
-    public ResponseEntity<String> deleteAssociatedService(String email, Long associatedServiceId) {
+    public ResponseEntity<MessageWrapperDto> deleteAssociatedService(String email, Long associatedServiceId) {
         ServiceProvider serviceProvider = serviceOfServiceProvider.findServiceProviderByUserEmail(email);
         log.info("fetched service provider with id {}", serviceProvider.getId());
         if (!associatedServiceRepository.existsByIdAndServiceProvider(associatedServiceId, serviceProvider))
@@ -226,7 +229,8 @@ public class ServiceOfAssociatedService {
         associatedServiceRepository.deleteById(associatedServiceId);
         log.info("associated service with id {} deleted", associatedServiceId);
         String ASSOCIATED_SERVICE_DELETED_SUCCESSFULLY = "associated_service_deleted_successfully";
-        return ResponseEntity.ok(generalMessageAccessor.getMessage(null, ASSOCIATED_SERVICE_DELETED_SUCCESSFULLY));
+        return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null,
+                ASSOCIATED_SERVICE_DELETED_SUCCESSFULLY)));
     }
 
     public AssociatedService findAssociatedServiceById(Long id){
