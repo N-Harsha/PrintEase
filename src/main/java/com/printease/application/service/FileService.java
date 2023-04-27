@@ -2,10 +2,12 @@ package com.printease.application.service;
 
 import com.printease.application.exceptions.ApiExceptionResponse;
 import com.printease.application.exceptions.CustomException;
+import com.printease.application.model.Customer;
 import com.printease.application.model.FileDB;
 import com.printease.application.model.Order;
 import com.printease.application.repository.FileRepository;
 import com.printease.application.repository.OrderRepository;
+import com.printease.application.security.utils.DocumentUtils;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.ProjectConstants;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -29,6 +32,8 @@ public class FileService {
     private final FileRepository fileRepository;
     private final ExceptionMessageAccessor exceptionMessageAccessor;
     private final OrderRepository orderRepository;
+    private final CustomerService customerService;
+    private final DocumentUtils documentUtils;
 
     public FileDB saveCompressedFileToDatabase(MultipartFile file) throws IOException {
 
@@ -101,7 +106,19 @@ public class FileService {
                 .getMessage(null, ProjectConstants.ORDER_NOT_FOUND), HttpStatus.NOT_FOUND, LocalDateTime.now())));
     }
 
-    private boolean checkIfOrderIsAssociatedWithUser(Order order,String email){
+    private boolean checkIfOrderIsAssociatedWithUser(Order order, String email) {
         return !order.getCustomer().getEmail().equalsIgnoreCase(email) && !order.getAssociatedService().getServiceProvider().getEmail().equalsIgnoreCase(email);
+    }
+
+    public ResponseEntity<String> pagesInFile(MultipartFile file, String email) {
+
+//        try {
+            Customer customer = customerService.findCustomerByUserEmail(email);
+            log.info("getting pages for uploaded document for customer with id : {}", customer.getId());
+            int pages = documentUtils.getPageCount(file);
+            return ResponseEntity.ok().body(String.valueOf(pages));
+//        } catch (CustomException e) {
+//            throw e;
+//        }
     }
 }
