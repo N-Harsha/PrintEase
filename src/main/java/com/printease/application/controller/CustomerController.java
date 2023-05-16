@@ -12,7 +12,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/customers/favorite")
+@RequestMapping("api/v1/customers/")
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
@@ -20,14 +20,15 @@ public class CustomerController {
     public ResponseEntity<List<ServiceProviderDto>> getFavoriteServiceProvider(Principal principal){
         return customerService.getFavoriteServiceProvider(principal.getName());
     }
-    @PostMapping("/{serviceProviderId}")
+    @PostMapping("favorite/{serviceProviderId}")
     public ResponseEntity<MessageWrapperDto> addFavoriteServiceProvider(Principal principal, @PathVariable Long serviceProviderId){
         return customerService.addFavoriteServiceProvider(principal.getName(), serviceProviderId);
     }
 
-    @DeleteMapping("/{serviceProviderId}")
+    @DeleteMapping("favorite/{serviceProviderId}")
     public ResponseEntity<MessageWrapperDto> deleteFavoriteServiceProvider(Principal principal,@PathVariable Long serviceProviderId){
         return customerService.deleteFavoriteServiceProvider(principal.getName(), serviceProviderId);
     }
+
 
 }

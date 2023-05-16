@@ -18,8 +18,9 @@ public class OrderCreationRequestDto {
     private Long associatedServiceId;
     private String comment;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @NotNull(message = "Due date cannot be empty")
     private LocalDateTime dueDate;
-    @NotNull
+    @NotNull(message = "Quantity cannot be empty")
     private Integer quantity;
     private MultipartFile file;
 }

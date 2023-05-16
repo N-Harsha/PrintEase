@@ -27,8 +27,8 @@ public class ServiceProvider extends User{
     @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
     private List<AssociatedService> associatedServices;
 
-//    @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
-//    private List<Rating> ratings;
+    @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
+    private List<Rating> ratings;
 
 
     @OneToOne(cascade = CascadeType.ALL)

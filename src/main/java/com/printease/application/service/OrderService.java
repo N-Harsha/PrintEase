@@ -10,6 +10,7 @@ import com.printease.application.security.dto.OrderDtoCustomer;
 import com.printease.application.security.dto.OrderDtoServiceProvider;
 import com.printease.application.security.mapper.OrderMapper;
 import com.printease.application.security.service.UserService;
+import com.printease.application.utils.DocumentUtils;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.GeneralMessageAccessor;
 import com.printease.application.utils.ProjectConstants;
@@ -37,9 +38,11 @@ public class OrderService {
     private final FileService fileService;
     private final ServiceOfAssociatedService serviceOfAssociatedService;
     private final UserService userService;
+    private final DocumentUtils documentUtils;
 
     private final ExceptionMessageAccessor exceptionMessageAccessor;
     private final GeneralMessageAccessor generalMessageAccessor;
+
 
 
     @Transactional
@@ -62,7 +65,8 @@ public class OrderService {
             throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null, ProjectConstants.INVALID_DUE_DATE), HttpStatus.BAD_REQUEST, LocalDateTime.now()));
         }
         Integer quantity = orderCreationRequestDto.getQuantity();
-        Float price = associatedService.getPrice() * quantity;
+        Integer noOfPages = documentUtils.getPageCount(orderCreationRequestDto.getFile());
+        Float price = associatedService.getPrice() * quantity * noOfPages;
         Order order = Order.builder()
                 .customer(customer)
                 .associatedService(associatedService)

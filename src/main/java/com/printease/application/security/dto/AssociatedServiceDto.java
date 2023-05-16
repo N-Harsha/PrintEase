@@ -26,6 +26,8 @@ public class AssociatedServiceDto {
 
     private BindingTypeDto bindingType;
 
+    private Long printServiceId;
+
     @NotNull
     private Float price;
 }

@@ -1,5 +1,6 @@
 package com.printease.application.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class AssociatedService {
 
     @ManyToOne
     @JoinColumn(name = "service_provider_id",nullable = false)
+    @JsonIgnore
     private ServiceProvider serviceProvider;
 
     @OneToOne

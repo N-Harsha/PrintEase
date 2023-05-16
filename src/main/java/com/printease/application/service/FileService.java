@@ -7,7 +7,7 @@ import com.printease.application.model.FileDB;
 import com.printease.application.model.Order;
 import com.printease.application.repository.FileRepository;
 import com.printease.application.repository.OrderRepository;
-import com.printease.application.security.utils.DocumentUtils;
+import com.printease.application.utils.DocumentUtils;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.ProjectConstants;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

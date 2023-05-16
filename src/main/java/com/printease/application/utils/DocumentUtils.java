@@ -1,4 +1,4 @@
-package com.printease.application.security.utils;
+package com.printease.application.utils;
 
 import com.printease.application.exceptions.ApiExceptionResponse;
 import com.printease.application.exceptions.CustomException;
