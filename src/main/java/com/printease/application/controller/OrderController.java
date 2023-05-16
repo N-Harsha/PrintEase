@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
@@ -19,21 +20,21 @@ public class OrderController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
-    public ResponseEntity<?> getAllOrders(Principal principal){
+    public ResponseEntity<?> getAllOrders(Principal principal) {
         // TODO: 18-04-2023  update this method to return only the required fields.
         return orderService.getAllOrders(principal.getName());
     }
 
     @GetMapping("/{orderId}")
     @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
-    public ResponseEntity<?> getOrderById(Principal principal, @PathVariable Long orderId){
+    public ResponseEntity<?> getOrderById(Principal principal, @PathVariable Long orderId) {
         return orderService.getOrderByIdResponseEntity(principal.getName(), orderId);
     }
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<?> createOrder(Principal principal,
-                                         @ModelAttribute OrderCreationRequestDto orderCreationRequestDto){
+                                         @Valid @ModelAttribute OrderCreationRequestDto orderCreationRequestDto) {
         return orderService.createOrder(principal.getName(), orderCreationRequestDto);
     }
 
@@ -41,15 +42,16 @@ public class OrderController {
     @PreAuthorize("hasAnyRole('ROLE_CUSTOMER','ROLE_SERVICE_PROVIDER')")
     public ResponseEntity<?> cancelOrder(Principal principal,
                                          @PathVariable Long orderId,
-                                         @RequestBody StatusUpdateDto statusUpdateDto){
-        return orderService.cancelOrder(principal.getName(), orderId,statusUpdateDto.getComment());
+                                         @RequestBody StatusUpdateDto statusUpdateDto) {
+        return orderService.cancelOrder(principal.getName(), orderId, statusUpdateDto.getComment());
     }
+
     @PutMapping("/{orderId}/promote")
     @PreAuthorize("hasRole('ROLE_SERVICE_PROVIDER')")
     public ResponseEntity<?> promoteOrder(Principal principal,
                                           @PathVariable Long orderId,
-                                          @RequestBody StatusUpdateDto statusUpdateDto){
-        return orderService.promoteOrder(principal.getName(), orderId,statusUpdateDto.getComment());
+                                          @RequestBody StatusUpdateDto statusUpdateDto) {
+        return orderService.promoteOrder(principal.getName(), orderId, statusUpdateDto.getComment());
     }
 
 

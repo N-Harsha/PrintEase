@@ -3,15 +3,19 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/print-ease
     username: admin
     password: Admin@123
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 
-#  spring.jpa.properties.javax.persistence.schema-generation.scripts.action
+  #  spring.jpa.properties.javax.persistence.schema-generation.scripts.action
 #  spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=schema.sql
 #  spring.jpa.properties.hibernate.format_sql=true
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
       show-sql: true
       format-sql: true
       type: info

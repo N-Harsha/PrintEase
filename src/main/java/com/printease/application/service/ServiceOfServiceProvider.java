@@ -9,6 +9,7 @@ import com.printease.application.repository.UserRepository;
 import com.printease.application.security.dto.RegistrationResponse;
 import com.printease.application.security.dto.ServiceProviderRegistrationRequest;
 import com.printease.application.security.mapper.ServiceProviderMapper;
+import com.printease.application.security.mapper.ServiceProviderRequestMapper;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.GeneralMessageAccessor;
 import com.printease.application.utils.ProjectConstants;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +39,7 @@ public class ServiceOfServiceProvider {
     private final GeneralMessageAccessor generalMessageAccessor;
 
     public RegistrationResponse registration(@Valid ServiceProviderRegistrationRequest registrationRequest) {
-        final ServiceProvider serviceProvider = ServiceProviderMapper.INSTANCE.convertToServiceProvider(registrationRequest);
+        final ServiceProvider serviceProvider = ServiceProviderRequestMapper.INSTANCE.convertToServiceProvider(registrationRequest);
         serviceProvider.setPassword(bCryptPasswordEncoder.encode(serviceProvider.getPassword()));
         serviceProvider.setAccountCreatedOn(LocalDateTime.now());
         serviceProvider.setAccountUpdatedOn(LocalDateTime.now());
@@ -65,5 +67,9 @@ public class ServiceOfServiceProvider {
         return serviceProviderRepository.findById(serviceProviderId).orElseThrow(() -> new CustomException(new ApiExceptionResponse(
                 exceptionMessageAccessor.getMessage(null, SERVICE_PROVIDER_NOT_FOUND, serviceProviderId),
                 HttpStatus.BAD_REQUEST, LocalDateTime.now())));
+    }
+
+    public List<ServiceProvider> getAllServiceProviders() {
+        return (List<ServiceProvider>) serviceProviderRepository.findAll();
     }
 }

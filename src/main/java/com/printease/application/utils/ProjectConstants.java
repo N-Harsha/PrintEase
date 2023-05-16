@@ -40,6 +40,7 @@ public final class ProjectConstants {
     public static final String INVALID_USER_ROLE = "invalid_user_role";
     public static final String FILE_NOT_FOUND = "file_not_found";
     public static final String FILE_CANNOT_BE_DOWNLOADED = "file_cannot_be_downloaded";
+    public static final String INVALID_FILE_EXTENSION = "invalid_file_extension";
     public static final String ORDER_NOT_FOUND = "order_not_found";
     public static final String DOWNLOAD_NOT_AUTHORIZED = "download_not_authorized";
     public static final String USER_NOT_AUTHORIZED_FOR_STATUS_UPDATE = "user_not_authorized_for_status_update";

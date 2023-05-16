@@ -3,6 +3,7 @@ package com.printease.application.security.dto;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Setter
 @Getter
@@ -10,13 +11,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 public class RecommendAssociatedServiceRequestDto {
-    private Long orientationId;
-    private Long paperSizeId;
-    private Long paperTypeId;
-    private Long printSideId;
-    private Long printTypeId;
-    private Long bindingTypeId;
+    @NotNull
     private Long printServiceId;
+    private List<Long> orientationIds;
+    private List<Long> paperSizeIds;
+    private List<Long> paperTypeIds;
+    private List<Long> printSideIds;
+    private List<Long> printTypeIds;
+    private List<Long> bindingTypeIds;
     @NotNull
     private Double longitude;
     @NotNull
