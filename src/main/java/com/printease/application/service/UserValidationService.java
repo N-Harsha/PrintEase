@@ -4,7 +4,7 @@ import com.printease.application.model.Address;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.exceptions.RegistrationException;
 import com.printease.application.repository.UserRepository;
-import com.printease.application.security.dto.RegistrationRequest;
+import com.printease.application.dto.RegistrationRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

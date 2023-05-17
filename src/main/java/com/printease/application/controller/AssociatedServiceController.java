@@ -1,9 +1,9 @@
 package com.printease.application.controller;
 
-import com.printease.application.security.dto.AssociatedServiceDto;
-import com.printease.application.security.dto.MessageWrapperDto;
-import com.printease.application.security.dto.RecommendAssociatedServiceRequestDto;
-import com.printease.application.security.dto.RecommendAssociatedServiceResponseDto;
+import com.printease.application.dto.AssociatedServiceDto;
+import com.printease.application.dto.MessageWrapperDto;
+import com.printease.application.dto.RecommendAssociatedServiceRequestDto;
+import com.printease.application.dto.RecommendAssociatedServiceResponseDto;
 import com.printease.application.service.ServiceOfAssociatedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

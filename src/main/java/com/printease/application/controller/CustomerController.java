@@ -1,8 +1,7 @@
 package com.printease.application.controller;
 
-import com.printease.application.model.ServiceProvider;
-import com.printease.application.security.dto.MessageWrapperDto;
-import com.printease.application.security.dto.ServiceProviderDto;
+import com.printease.application.dto.MessageWrapperDto;
+import com.printease.application.dto.ServiceProviderDto;
 import com.printease.application.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

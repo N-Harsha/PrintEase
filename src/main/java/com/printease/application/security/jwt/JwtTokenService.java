@@ -1,14 +1,13 @@
 package com.printease.application.security.jwt;
 
-import com.printease.application.security.mapper.UserMapper;
+import com.printease.application.mapper.UserMapper;
 import com.printease.application.model.User;
-import com.printease.application.security.dto.AuthenticatedUserDto;
-import com.printease.application.security.dto.LoginRequest;
-import com.printease.application.security.dto.LoginResponse;
+import com.printease.application.dto.AuthenticatedUserDto;
+import com.printease.application.dto.LoginRequest;
+import com.printease.application.dto.LoginResponse;
 import com.printease.application.security.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;

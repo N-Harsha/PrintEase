@@ -1,7 +1,7 @@
 package com.printease.application.security.service;
 
 import com.printease.application.model.UserRole;
-import com.printease.application.security.dto.AuthenticatedUserDto;
+import com.printease.application.dto.AuthenticatedUserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

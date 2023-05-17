@@ -1,8 +1,8 @@
 package com.printease.application.controller;
 
 
-import com.printease.application.security.dto.OrderCreationRequestDto;
-import com.printease.application.security.dto.StatusUpdateDto;
+import com.printease.application.dto.OrderCreationRequestDto;
+import com.printease.application.dto.StatusUpdateDto;
 import com.printease.application.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

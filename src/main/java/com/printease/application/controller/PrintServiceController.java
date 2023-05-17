@@ -1,8 +1,7 @@
 package com.printease.application.controller;
 
-import com.printease.application.model.PrintService;
-import com.printease.application.security.dto.PrintServiceDto;
-import com.printease.application.security.dto.SpecificPrintServiceDto;
+import com.printease.application.dto.PrintServiceDto;
+import com.printease.application.dto.SpecificPrintServiceDto;
 import com.printease.application.service.ServiceOfPrintService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
