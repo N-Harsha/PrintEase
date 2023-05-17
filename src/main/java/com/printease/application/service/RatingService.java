@@ -1,13 +1,15 @@
 package com.printease.application.service;
 
+import com.printease.application.dto.RatingDto;
 import com.printease.application.exceptions.ApiExceptionResponse;
 import com.printease.application.exceptions.CustomException;
+import com.printease.application.mapper.RatingsMapper;
 import com.printease.application.model.Customer;
 import com.printease.application.model.Rating;
 import com.printease.application.model.ServiceProvider;
 import com.printease.application.repository.RatingRepository;
-import com.printease.application.security.dto.MessageWrapperDto;
-import com.printease.application.security.dto.RatingCreateRequestDto;
+import com.printease.application.dto.MessageWrapperDto;
+import com.printease.application.dto.RatingCreateRequestDto;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.GeneralMessageAccessor;
 import com.printease.application.utils.ProjectConstants;
@@ -19,6 +21,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -37,12 +42,12 @@ public class RatingService {
                 serviceOfServiceProvider.findById(ratingCreateRequestDto.getServiceProviderId());
         log.info("Customer with id {} is trying to created rating for service provider with id {}",
                 customer.getId(), serviceProvider.getId());
-        if(isRatingExists(customer, serviceProvider)) {
+        if (isRatingExists(customer, serviceProvider)) {
             throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
-                    ProjectConstants.RATING_ALREADY_GIVEN,serviceProvider.getId()), HttpStatus.BAD_REQUEST,
+                    ProjectConstants.RATING_ALREADY_GIVEN, serviceProvider.getId()), HttpStatus.BAD_REQUEST,
                     LocalDateTime.now()));
         }
-        log.info("Customer with id: {} has not rated the service provider with id: {} yet.",customer.getId(),
+        log.info("Customer with id: {} has not rated the service provider with id: {} yet.", customer.getId(),
                 serviceProvider.getId());
         Rating rating = Rating.builder().rating(ratingCreateRequestDto.getRating())
                 .comment(ratingCreateRequestDto.getComment()).customer(customer).serviceProvider(serviceProvider)
@@ -58,5 +63,28 @@ public class RatingService {
         return ratingRepository.existsByCustomerAndAndServiceProvider(customer, serviceProvider);
     }
 
+
+    @Transactional
+    public ResponseEntity<List<RatingDto>> getRating(Long id, String email) {
+        final Customer customer = customerService.findCustomerByUserEmail(email);
+        final ServiceProvider serviceProvider = serviceOfServiceProvider.findById(id);
+        log.info("Customer with id {} is trying to get rating for service provider with id {}",
+                customer.getId(), serviceProvider.getId());
+        List<Rating> responseRatings = new ArrayList<>();
+        Rating currentCustomerRating = null;
+        for (Rating rating : serviceProvider.getRatings()) {
+            if (rating.getCustomer().getId().equals(customer.getId())) {
+                currentCustomerRating = rating;
+            } else {
+                responseRatings.add(rating);
+            }
+        }
+        responseRatings.sort(Comparator.comparing(Rating::getUpdatedDate).reversed());
+        if (currentCustomerRating != null)
+            responseRatings.add(0, currentCustomerRating);
+        log.info("fetched {} ratings of service provider with id {} for customer with id {}",
+                responseRatings.size(), serviceProvider.getId(), customer.getId());
+        return ResponseEntity.ok(RatingsMapper.INSTANCE.convertToRatingDtoList(responseRatings));
+    }
 
 }

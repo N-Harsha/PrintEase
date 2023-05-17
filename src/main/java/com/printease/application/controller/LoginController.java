@@ -1,7 +1,7 @@
 package com.printease.application.controller;
 
-import com.printease.application.security.dto.LoginRequest;
-import com.printease.application.security.dto.LoginResponse;
+import com.printease.application.dto.LoginRequest;
+import com.printease.application.dto.LoginResponse;
 import com.printease.application.security.jwt.JwtTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

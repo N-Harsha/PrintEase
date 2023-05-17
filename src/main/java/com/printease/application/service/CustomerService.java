@@ -1,15 +1,18 @@
 package com.printease.application.service;
 
+import com.printease.application.dto.MessageWrapperDto;
+import com.printease.application.dto.RegistrationRequest;
+import com.printease.application.dto.RegistrationResponse;
+import com.printease.application.dto.ServiceProviderDto;
 import com.printease.application.exceptions.ApiExceptionResponse;
 import com.printease.application.exceptions.CustomException;
+import com.printease.application.mapper.CustomerMapper;
+import com.printease.application.mapper.ServiceProviderRequestMapper;
 import com.printease.application.model.Customer;
 import com.printease.application.model.ServiceProvider;
 import com.printease.application.model.User;
 import com.printease.application.repository.CustomerRepository;
 import com.printease.application.repository.UserRepository;
-import com.printease.application.security.dto.*;
-import com.printease.application.security.mapper.CustomerMapper;
-import com.printease.application.security.mapper.ServiceProviderRequestMapper;
 import com.printease.application.utils.ExceptionMessageAccessor;
 import com.printease.application.utils.GeneralMessageAccessor;
 import com.printease.application.utils.ProjectConstants;
