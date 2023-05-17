@@ -17,14 +17,12 @@ public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long rating;
+    private Float rating;
     private String comment;
-    @OneToOne
-    private AssociatedService associatedService;
     @ManyToOne
-    @JsonIgnore
     private ServiceProvider serviceProvider;
-    @OneToOne
+    @ManyToOne
     private Customer customer;
     private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 }

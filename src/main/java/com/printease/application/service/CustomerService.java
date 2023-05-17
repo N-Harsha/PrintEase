@@ -111,4 +111,5 @@ public class CustomerService {
         return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null, ProjectConstants.FAVOURITE_SERVICE_PROVIDER_REMOVED,
                 serviceProvider.getId(), customer.getId())));
     }
+
 }
