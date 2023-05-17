@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RatingsController {
     private final RatingService ratingService;
-    @PostMapping("/create")
+    @PostMapping
     @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<MessageWrapperDto> createRating(@Valid @RequestBody RatingCreateRequestDto ratingCreateRequestDto,
                                                           Principal principal) {
@@ -29,6 +29,19 @@ public class RatingsController {
     @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<List<RatingDto>> getRating(@PathVariable Long id, Principal principal) {
         return ratingService.getRating(id, principal.getName());
+    }
+
+    @PutMapping
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
+    public ResponseEntity<MessageWrapperDto> updateRating(@Valid @RequestBody RatingCreateRequestDto ratingCreateRequestDto,
+                                                          Principal principal) {
+        return ratingService.updateRating(principal.getName(),ratingCreateRequestDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
+    public ResponseEntity<MessageWrapperDto> deleteRating(@PathVariable Long id, Principal principal) {
+        return ratingService.deleteRating(id, principal.getName());
     }
 
 }

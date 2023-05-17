@@ -87,4 +87,52 @@ public class RatingService {
         return ResponseEntity.ok(RatingsMapper.INSTANCE.convertToRatingDtoList(responseRatings));
     }
 
+    private Rating getRatingById(Long id) {
+        return ratingRepository.findById(id).orElseThrow(() -> new CustomException(new ApiExceptionResponse(
+                exceptionMessageAccessor.getMessage(null, ProjectConstants.RATING_NOT_FOUND, id),
+                HttpStatus.NOT_FOUND, LocalDateTime.now())));
+    }
+
+    @Transactional
+    public ResponseEntity<MessageWrapperDto> updateRating(String email, RatingCreateRequestDto ratingCreateRequestDto) {
+        Rating rating = getRatingById(ratingCreateRequestDto.getId());
+        Customer customer = customerService.findCustomerByUserEmail(email);
+        log.info("Customer with id {} is trying to update rating with id {}",
+                customer.getId(), ratingCreateRequestDto.getId());
+
+        if (!rating.getCustomer().getId().equals(customer.getId())) {
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
+                    ProjectConstants.RATING_NOT_FOUND, ratingCreateRequestDto.getId()), HttpStatus.NOT_FOUND,
+                    LocalDateTime.now()));
+        }
+
+        rating.setRating(ratingCreateRequestDto.getRating());
+        rating.setComment(ratingCreateRequestDto.getComment());
+        rating.setUpdatedDate(LocalDateTime.now());
+        ratingRepository.save(rating);
+        log.info("Rating with id: {} has been updated by customer with id: {}",
+                rating.getId(), customer.getId());
+
+        return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null,
+                ProjectConstants.RATING_UPDATED)));
+    }
+
+
+    @Transactional
+    public ResponseEntity<MessageWrapperDto> deleteRating(Long id, String email) {
+        Rating rating = getRatingById(id);
+        Customer customer = customerService.findCustomerByUserEmail(email);
+        log.info("Customer with id {} is trying to delete rating with id {}",
+                customer.getId(), id);
+        if(!rating.getCustomer().getId().equals(customer.getId())){
+            throw new CustomException(new ApiExceptionResponse(exceptionMessageAccessor.getMessage(null,
+                    ProjectConstants.RATING_NOT_FOUND, id), HttpStatus.NOT_FOUND,
+                    LocalDateTime.now()));
+        }
+        ratingRepository.delete(rating);
+        log.info("Rating with id: {} has been deleted by customer with id: {}",
+                rating.getId(), customer.getId());
+        return ResponseEntity.ok(new MessageWrapperDto(generalMessageAccessor.getMessage(null,
+                ProjectConstants.RATING_DELETED)));
+    }
 }

@@ -17,6 +17,7 @@ public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(columnDefinition = "FLOAT")
     private Float rating;
     private String comment;
     @ManyToOne

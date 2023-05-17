@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 public class RatingCreateRequestDto {
+    private Long id;
     @NotNull(message = "Service Provider Id should not be null")
     private Long serviceProviderId;
     @Max(value=5,message = "Rating should not be greater than 5")
